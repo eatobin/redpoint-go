@@ -28,3 +28,10 @@ func TestJsonStringToGiftPair(t *testing.T) {
 		t.Fatalf("JsonStringToGiftPair(%v) == %v, want %v", jsonStringGP, gotGP, gp)
 	}
 }
+
+func TestGiftPairToJsonString(t *testing.T) {
+	gotString, _ := GiftPair.GiftPairToJsonString(gp)
+	if gotString != jsonStringGP {
+		t.Fatalf("JsonStringToGiftPair(%v) == %v, want %v", gp, gotString, jsonStringGP)
+	}
+}
