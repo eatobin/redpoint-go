@@ -2,30 +2,37 @@ package giftPair
 
 import "testing"
 
-var badName, _ = JsonStringToBorrower("{\"name\":\"Borrower1X\",\"maxBooks\":1}")
-var badMB, _ = JsonStringToBorrower("{\"name\":\"Borrower1\",\"maxBooks\":19}")
-var wantBr = "Borrower1 (1 books)"
-var jsonString = "{\"name\":\"Borrower1X\",\"maxBooks\":1}"
+//var jsonStringGP = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
+var gp = GiftPair{
+	Givee: "GeoHar",
+	Giver: "JohLen",
+}
 
-func TestSetName(t *testing.T) {
-	name := "Borrower1"
-	gotBrN := Borrower.String(Borrower.SetName(badName, name))
-	if gotBrN != wantBr {
-		t.Fatalf("SetName(%v, %v) == %v, want %v", badName, name, gotBrN, wantBr)
+func TestUpdateGiveeGiver(t *testing.T) {
+	newGive := "NewBee"
+	gpGe := GiftPair{Givee: "NewBee", Giver: "JohLen"}
+	gpGr := GiftPair{Givee: "GeoHar", Giver: "NewBee"}
+	gotGpEE := GiftPair.UpdateGivee(gp, newGive)
+	gotGpER := GiftPair.UpdateGiver(gp, newGive)
+	if gotGpEE != gpGe {
+		t.Fatalf("UpdateGivee(%v, %v) == %v, want %v", gp, newGive, gotGpEE, gpGe)
+	}
+	if gotGpER != gpGr {
+		t.Fatalf("UpdateGivee(%v, %v) == %v, want %v", gp, newGive, gotGpER, gpGr)
 	}
 }
 
-func TestSetMaxBooks(t *testing.T) {
-	maxBooks := 1
-	gotBrMB := Borrower.String(Borrower.SetMaxBooks(badMB, maxBooks))
-	if gotBrMB != wantBr {
-		t.Fatalf("SetMaxBooks(%v, %v) == %v, want %v", badMB, maxBooks, gotBrMB, wantBr)
-	}
-}
-
-func TestBrToJsonString(t *testing.T) {
-	gotJsonString, _ := Borrower.BrToJsonString(badName)
-	if gotJsonString != jsonString {
-		t.Fatalf("BrToJsonString(%v) == %v, want %v", badName, gotJsonString, jsonString)
-	}
-}
+//func TestSetMaxBooks(t *testing.T) {
+//	maxBooks := 1
+//	gotBrMB := Borrower.String(Borrower.SetMaxBooks(badMB, maxBooks))
+//	if gotBrMB != wantBr {
+//		t.Fatalf("SetMaxBooks(%v, %v) == %v, want %v", badMB, maxBooks, gotBrMB, wantBr)
+//	}
+//}
+//
+//func TestBrToJsonString(t *testing.T) {
+//	gotJsonString, _ := Borrower.BrToJsonString(badName)
+//	if gotJsonString != jsonString {
+//		t.Fatalf("BrToJsonString(%v) == %v, want %v", badName, gotJsonString, jsonString)
+//	}
+//}
