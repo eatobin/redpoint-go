@@ -18,7 +18,7 @@ func TestUpdateGiveeGiver(t *testing.T) {
 		t.Fatalf("UpdateGivee(%v, %v) == %v, want %v", gp, newGive, gotGpEE, gpGe)
 	}
 	if gotGpER != gpGr {
-		t.Fatalf("UpdateGivee(%v, %v) == %v, want %v", gp, newGive, gotGpER, gpGr)
+		t.Fatalf("UpdateGiver(%v, %v) == %v, want %v", gp, newGive, gotGpER, gpGr)
 	}
 }
 
