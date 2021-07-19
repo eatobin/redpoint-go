@@ -2,7 +2,7 @@ package giftPair
 
 import "testing"
 
-//var jsonStringGP = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
+var jsonStringGP = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
 var gp = GiftPair{
 	Givee: "GeoHar",
 	Giver: "JohLen",
@@ -22,17 +22,9 @@ func TestUpdateGiveeGiver(t *testing.T) {
 	}
 }
 
-//func TestSetMaxBooks(t *testing.T) {
-//	maxBooks := 1
-//	gotBrMB := Borrower.String(Borrower.SetMaxBooks(badMB, maxBooks))
-//	if gotBrMB != wantBr {
-//		t.Fatalf("SetMaxBooks(%v, %v) == %v, want %v", badMB, maxBooks, gotBrMB, wantBr)
-//	}
-//}
-//
-//func TestBrToJsonString(t *testing.T) {
-//	gotJsonString, _ := Borrower.BrToJsonString(badName)
-//	if gotJsonString != jsonString {
-//		t.Fatalf("BrToJsonString(%v) == %v, want %v", badName, gotJsonString, jsonString)
-//	}
-//}
+func TestJsonStringToGiftPair(t *testing.T) {
+	gotGP, _ := JsonStringToGiftPair(jsonStringGP)
+	if gotGP != gp {
+		t.Fatalf("JsonStringToGiftPair(%v) == %v, want %v", jsonStringGP, gotGP, gp)
+	}
+}
