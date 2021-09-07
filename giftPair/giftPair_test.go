@@ -7,16 +7,16 @@ var badGiver, _ = JsonStringToGiftPair("{\"givee\":\"GeoHar\",\"giver\":\"JohLeX
 var wantGP = "[Givee: GeoHar, Giver: JohLen]"
 var jsonString = "{\"givee\":\"GeoHaX\",\"giver\":\"JohLen\"}"
 
-func TestSetGiveeGiver(t *testing.T) {
+func TestUpdateGiveeGiver(t *testing.T) {
 	goodGivee := "GeoHar"
 	goodGiver := "JohLen"
-	gotGpEE := badGivee.SetGivee(goodGivee).String()
-	gotGpER := badGiver.SetGiver(goodGiver).String()
+	gotGpEE := badGivee.UpdateGivee(goodGivee).String()
+	gotGpER := badGiver.UpdateGiver(goodGiver).String()
 	if gotGpEE != wantGP {
-		t.Fatalf("(%v) SetGivee(%v) == %v, want %v", badGivee, goodGivee, gotGpEE, wantGP)
+		t.Fatalf("(%v) UpdateGivee(%v) == %v, want %v", badGivee, goodGivee, gotGpEE, wantGP)
 	}
 	if gotGpER != wantGP {
-		t.Fatalf("(%v) SetGiver(%v) == %v, want %v", badGiver, goodGiver, gotGpER, wantGP)
+		t.Fatalf("(%v) UpdateGiver(%v) == %v, want %v", badGiver, goodGiver, gotGpER, wantGP)
 	}
 }
 

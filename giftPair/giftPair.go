@@ -18,14 +18,14 @@ func JsonStringToGiftPair(gpString string) (GiftPair, error) {
 	return giftPair, err
 }
 
-// SetGivee updates a Givee in a GiftPair
-func (gp GiftPair) SetGivee(givee string) GiftPair {
+// UpdateGivee updates a Givee in a GiftPair
+func (gp GiftPair) UpdateGivee(givee string) GiftPair {
 	gp.Givee = givee
 	return gp
 }
 
-// SetGiver updates a Giver in a GiftPair
-func (gp GiftPair) SetGiver(giver string) GiftPair {
+// UpdateGiver updates a Giver in a GiftPair
+func (gp GiftPair) UpdateGiver(giver string) GiftPair {
 	gp.Giver = giver
 	return gp
 }
