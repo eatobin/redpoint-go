@@ -2,36 +2,27 @@ package giftPair
 
 import "testing"
 
-var jsonStringGP = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
-var gp = GiftPair{
-	Givee: "GeoHar",
-	Giver: "JohLen",
-}
+var badGivee, _ = JsonStringToGiftPair("{\"givee\":\"GeoHaX\",\"giver\":\"JohLen\"}")
+var badGiver, _ = JsonStringToGiftPair("{\"givee\":\"GeoHar\",\"giver\":\"JohLeX\"}")
+var wantGP = "[Givee: GeoHar, Giver: JohLen]"
+var jsonString = "{\"givee\":\"GeoHaX\",\"giver\":\"JohLen\"}"
 
-func TestUpdateGiveeGiver(t *testing.T) {
-	newGive := "NewBee"
-	gpGe := GiftPair{Givee: "NewBee", Giver: "JohLen"}
-	gpGr := GiftPair{Givee: "GeoHar", Giver: "NewBee"}
-	gotGpEE := GiftPair.UpdateGivee(gp, newGive)
-	gotGpER := GiftPair.UpdateGiver(gp, newGive)
-	if gotGpEE != gpGe {
-		t.Fatalf("UpdateGivee(%v, %v) == %v, want %v", gp, newGive, gotGpEE, gpGe)
+func TestSetGiveeGiver(t *testing.T) {
+	goodGivee := "GeoHar"
+	goodGiver := "JohLen"
+	gotGpEE := badGivee.SetGivee(goodGivee).String()
+	gotGpER := badGiver.SetGiver(goodGiver).String()
+	if gotGpEE != wantGP {
+		t.Fatalf("(%v) SetGivee(%v) == %v, want %v", badGivee, goodGivee, gotGpEE, wantGP)
 	}
-	if gotGpER != gpGr {
-		t.Fatalf("UpdateGiver(%v, %v) == %v, want %v", gp, newGive, gotGpER, gpGr)
-	}
-}
-
-func TestJsonStringToGiftPair(t *testing.T) {
-	gotGP, _ := JsonStringToGiftPair(jsonStringGP)
-	if gotGP != gp {
-		t.Fatalf("JsonStringToGiftPair(%v) == %v, want %v", jsonStringGP, gotGP, gp)
+	if gotGpER != wantGP {
+		t.Fatalf("(%v) SetGiver(%v) == %v, want %v", badGiver, goodGiver, gotGpER, wantGP)
 	}
 }
 
 func TestGiftPairToJsonString(t *testing.T) {
-	gotString, _ := GiftPair.GiftPairToJsonString(gp)
-	if gotString != jsonStringGP {
-		t.Fatalf("JsonStringToGiftPair(%v) == %v, want %v", gp, gotString, jsonStringGP)
+	gotJsonString, _ := badGivee.GiftPairToJsonString()
+	if gotJsonString != jsonString {
+		t.Fatalf("(%v) JsonStringToGiftPair() == %v, want %v", badGivee, gotJsonString, jsonString)
 	}
 }
