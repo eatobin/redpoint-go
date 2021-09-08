@@ -2,20 +2,12 @@ package giftPair
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // A GiftPair has a Givee and a Giver
 type GiftPair struct {
 	Givee string `json:"givee"`
 	Giver string `json:"giver"`
-}
-
-// JsonStringToGiftPair turns a GiftPair JSON string into a GiftPair
-func JsonStringToGiftPair(gpString string) (GiftPair, error) {
-	var giftPair GiftPair
-	err := json.Unmarshal([]byte(gpString), &giftPair)
-	return giftPair, err
 }
 
 // UpdateGivee updates a Givee in a GiftPair
@@ -30,9 +22,11 @@ func (gp GiftPair) UpdateGiver(giver string) GiftPair {
 	return gp
 }
 
-// String makes a GiftPair into a string
-func (gp GiftPair) String() string {
-	return fmt.Sprintf("[Givee: %s, Giver: %s]", gp.Givee, gp.Giver)
+// JsonStringToGiftPair turns a GiftPair JSON string into a GiftPair
+func JsonStringToGiftPair(gpString string) (GiftPair, error) {
+	var giftPair GiftPair
+	err := json.Unmarshal([]byte(gpString), &giftPair)
+	return giftPair, err
 }
 
 // GiftPairToJsonString turns a GiftPair into a GiftPair JSON string
