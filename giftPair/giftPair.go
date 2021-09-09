@@ -2,6 +2,7 @@ package giftPair
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // A GiftPair has a Givee and a Giver
@@ -20,6 +21,11 @@ func (gp GiftPair) UpdateGivee(givee string) GiftPair {
 func (gp GiftPair) UpdateGiver(giver string) GiftPair {
 	gp.Giver = giver
 	return gp
+}
+
+// String makes a GiftPair into a string
+func (gp GiftPair) String() string {
+	return fmt.Sprintf("{Givee: %s, Giver: %s}", gp.Givee, gp.Giver)
 }
 
 // JsonStringToGiftPair turns a GiftPair JSON string into a GiftPair
