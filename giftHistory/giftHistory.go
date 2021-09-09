@@ -25,8 +25,8 @@ func JsonStringToGiftHistory(ghString string) (GiftHistory, error) {
 	return giftHistory, err
 }
 
-// GiftHistoryToJsonString turns a GiftHistory into a GiftHistory JSON string
-func GiftHistoryToJsonString(giftHistory GiftHistory) (string, error) {
+// GHToJsonString turns a GiftHistory into a GiftHistory JSON string
+func GHToJsonString(giftHistory GiftHistory) (string, error) {
 	ghByte, err := json.Marshal(*giftHistory)
 	return string(ghByte), err
 }

@@ -48,3 +48,13 @@ func TestJsonStringToGiftHistory(t *testing.T) {
 		t.Fatalf("JsonStringToGiftHistory(%s) == %v,\nwant %v", jsonStringGH, gotGH, giftHistory)
 	}
 }
+
+func TestGiftHistoryToJsonString(t *testing.T) {
+	jsonStringGH := "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
+	giftHistory := &[]GiftPairPtr{{Givee: "GeoHar", Giver: "JohLen"}}
+	gotGHstring, _ := GHToJsonString(giftHistory)
+
+	if jsonStringGH != gotGHstring {
+		t.Fatalf("GHToJsonString(%v) == %s,\nwant %s", giftHistory, gotGHstring, jsonStringGH)
+	}
+}
