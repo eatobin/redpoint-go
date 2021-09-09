@@ -27,16 +27,16 @@ func TestAddYear(t *testing.T) {
 	AddYear("NewBee", giftHistory)
 
 	if !equal(*giftHistory, *giftHistoryExtended) {
-		t.Fatalf("AddYear(%s, %v) == %v, want\n %v", "NewBee", giftHistoryBase, giftHistory, giftHistoryExtended)
+		t.Fatalf("AddYear(%s, %v) == %v,\nwant %v", "NewBee", giftHistoryBase, giftHistory, giftHistoryExtended)
 	}
 }
 
-//func TestUpdateGiftHistory(t *testing.T) {
-//	giftHistoryBase := GiftHistory{&GiftPair{Givee: "GeoHar", Giver: "JohLen"}}
-//	giftHistory := GiftHistory{&GiftPair{Givee: "GeoHar", Giver: "JohLen"}}
-//	giftHistoryMeYou := GiftHistory{&GiftPair{Givee: "me", Giver: "you"}}
-//	UpdateGiftHistory(0, &GiftPair{Givee: "me", Giver: "you"}, giftHistory)
-//	if !equal(giftHistory, giftHistoryMeYou) {
-//		t.Fatalf("UpdateGiftHistory(%d, %v, %v) == %v, want %v", 0, GiftPair{Givee: "me", Giver: "you"}, giftHistoryBase, giftHistory, giftHistoryMeYou)
-//	}
-//}
+func TestUpdateGiftHistory(t *testing.T) {
+	giftHistoryBase := &[]GiftPairPtr{{Givee: "GeoHar", Giver: "JohLen"}}
+	giftHistory := &[]GiftPairPtr{{Givee: "GeoHar", Giver: "JohLen"}}
+	giftHistoryMeYou := &[]GiftPairPtr{{Givee: "me", Giver: "you"}}
+	UpdateGiftHistory(0, &GiftPair{Givee: "me", Giver: "you"}, giftHistory)
+	if !equal(*giftHistory, *giftHistoryMeYou) {
+		t.Fatalf("UpdateGiftHistory(%d, %v, %v) == %v,\nwant %v", 0, GiftPair{Givee: "me", Giver: "you"}, giftHistoryBase, giftHistory, giftHistoryMeYou)
+	}
+}

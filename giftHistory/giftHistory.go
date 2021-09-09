@@ -12,6 +12,7 @@ func AddYear(playerKey string, giftHistory GiftHistory) {
 	*giftHistory = append(*giftHistory, &GiftPair{Givee: playerKey, Giver: playerKey})
 }
 
-//func UpdateGiftHistory(giftYear int, giftPairPtr GiftPairPtr, giftHistory GiftHistory) {
-//	giftHistory[giftYear] = giftPairPtr
-//}
+func UpdateGiftHistory(giftYear int, giftPairPtr GiftPairPtr, giftHistory GiftHistory) {
+	derefGH := *giftHistory
+	derefGH[giftYear] = giftPairPtr
+}
