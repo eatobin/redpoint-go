@@ -4,8 +4,6 @@ import (
 	"testing"
 )
 
-////var jsonStringGH = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
-
 // Equal tells whether a and b contain the same elements.
 // A nil argument is equivalent to an empty slice.
 func equal(a, b []*GiftPair) bool {
@@ -38,5 +36,15 @@ func TestUpdateGiftHistory(t *testing.T) {
 	UpdateGiftHistory(0, &GiftPair{Givee: "me", Giver: "you"}, giftHistory)
 	if !equal(*giftHistory, *giftHistoryMeYou) {
 		t.Fatalf("UpdateGiftHistory(%d, %v, %v) == %v,\nwant %v", 0, GiftPair{Givee: "me", Giver: "you"}, giftHistoryBase, giftHistory, giftHistoryMeYou)
+	}
+}
+
+func TestJsonStringToGiftHistory(t *testing.T) {
+	jsonStringGH := "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
+	giftHistory := &[]GiftPairPtr{{Givee: "GeoHar", Giver: "JohLen"}}
+	gotGH, _ := JsonStringToGiftHistory(jsonStringGH)
+
+	if !equal(*giftHistory, *gotGH) {
+		t.Fatalf("JsonStringToGiftHistory(%s) == %v,\nwant %v", jsonStringGH, gotGH, giftHistory)
 	}
 }
