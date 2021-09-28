@@ -6,16 +6,15 @@ import (
 )
 
 type GiftPair = giftPair.GiftPair
-type GiftPairPtr = *GiftPair
-type GiftHistory = *[]GiftPairPtr
+type GiftHistory = []GiftPair
 
-func AddYear(playerKey string, giftHistory GiftHistory) {
-	*giftHistory = append(*giftHistory, &GiftPair{Givee: playerKey, Giver: playerKey})
+func AddYear(playerKey string, giftHistory GiftHistory) GiftHistory {
+	return append(giftHistory, GiftPair{Givee: playerKey, Giver: playerKey})
 }
 
-func UpdateGiftHistory(giftYear int, giftPairPtr GiftPairPtr, giftHistory GiftHistory) {
-	derefGH := *giftHistory
-	derefGH[giftYear] = giftPairPtr
+func UpdateGiftHistory(giftYear int, giftPair GiftPair, giftHistory GiftHistory) GiftHistory {
+	giftHistory[giftYear] = giftPair
+	return giftHistory
 }
 
 // JsonStringToGiftHistory turns a GiftHistory JSON string into a GiftHistory
@@ -27,6 +26,6 @@ func JsonStringToGiftHistory(ghString string) (GiftHistory, error) {
 
 // GHToJsonString turns a GiftHistory into a GiftHistory JSON string
 func GHToJsonString(giftHistory GiftHistory) (string, error) {
-	ghByte, err := json.Marshal(*giftHistory)
+	ghByte, err := json.Marshal(giftHistory)
 	return string(ghByte), err
 }
