@@ -1,6 +1,7 @@
 package player
 
 import (
+	"encoding/json"
 	"github.com/eatobin/redpointGo/giftHistory"
 	"github.com/eatobin/redpointGo/giftPair"
 )
@@ -8,51 +9,27 @@ import (
 type GiftPair = giftPair.GiftPair
 type GiftHistory = giftHistory.GiftHistory
 
-//case class Player(playerName: String, giftHistory: Vector[GiftPair])
-//
-//object Player {
-//def updateGiftHistory(giftHistory: Vector[GiftPair])(player: Player): Player =
-//player.copy(giftHistory = giftHistory)
-//
-//def jsonStringToPlayer(plrString: String): Either[Error, Player] =
-//decode[Player](plrString)
-//
-//def playerToJsonString(player: Player): JsonString =
-//player.asJson.noSpaces
-//}
-
 // A Player has a PlayerName and a GiftHistory
 type Player struct {
-	PlayerName  string `json:"playerName"`
-	GiftHistory string `json:"giftHistory"`
+	PlayerName  string      `json:"playerName"`
+	GiftHistory GiftHistory `json:"giftHistory"`
 }
 
-//// UpdateGivee updates a Givee in a GiftPair
-//func (gp GiftPair) UpdateGivee(givee string) GiftPair {
-//	gp.Givee = givee
-//	return gp
-//}
-//
-//// UpdateGiver updates a Giver in a GiftPair
-//func (gp GiftPair) UpdateGiver(giver string) GiftPair {
-//	gp.Giver = giver
-//	return gp
-//}
-//
-//// String makes a GiftPair into a string
-//func (gp GiftPair) String() string {
-//	return fmt.Sprintf("{Givee: %s, Giver: %s}", gp.Givee, gp.Giver)
-//}
-//
-//// JsonStringToGiftPair turns a GiftPair JSON string into a GiftPair
-//func JsonStringToGiftPair(gpString string) (GiftPair, error) {
-//	var giftPair GiftPair
-//	err := json.Unmarshal([]byte(gpString), &giftPair)
-//	return giftPair, err
-//}
-//
-//// GiftPairToJsonString turns a GiftPair into a GiftPair JSON string
-//func (gp GiftPair) GiftPairToJsonString() (string, error) {
-//	gpByte, err := json.Marshal(gp)
-//	return string(gpByte), err
-//}
+// UpdateGiftHistory updates a GiftHistory in a Player
+func (player Player) UpdateGiftHistory(gh GiftHistory) Player {
+	player.GiftHistory = gh
+	return player
+}
+
+// JsonStringToPlayer turns a Player JSON string into a Player
+func JsonStringToPlayer(playerString string) (Player, error) {
+	var player Player
+	err := json.Unmarshal([]byte(playerString), &player)
+	return player, err
+}
+
+// PlayerToJsonString turns a Player into a Player JSON string
+func (player Player) PlayerToJsonString() (string, error) {
+	playerByte, err := json.Marshal(player)
+	return string(playerByte), err
+}
