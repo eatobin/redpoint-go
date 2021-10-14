@@ -8,10 +8,26 @@ import (
 type GiftPair = giftPair.GiftPair
 type GiftHistory = []GiftPair
 
+// GHcompare tells whether GHa and GHb contain the same elements.
+// A nil argument is equivalent to an empty slice.
+func GHcompare(a, b []GiftPair) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i, v := range a {
+		if v != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
+// AddYear adds a playerKey to each giftHistory
 func AddYear(playerKey string, giftHistory GiftHistory) GiftHistory {
 	return append(giftHistory, GiftPair{Givee: playerKey, Giver: playerKey})
 }
 
+// UpdateGiftHistory replaces a giftPair at a given giftYear
 func UpdateGiftHistory(giftYear int, giftPair GiftPair, giftHistory GiftHistory) GiftHistory {
 	giftHistory[giftYear] = giftPair
 	return giftHistory

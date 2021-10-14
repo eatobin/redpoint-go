@@ -1,24 +1,35 @@
 package player
 
-//import "testing"
-//
-//var jsonStringGP = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
-//var gp = GiftPair{Givee: "GeoHar", Giver: "JohLen"}
-//
-//func TestUpdateGiveeGiver(t *testing.T) {
-//	newGive := "NewBee"
-//	gpGe := GiftPair{Givee: "NewBee", Giver: "JohLen"}
-//	gpGr := GiftPair{Givee: "GeoHar", Giver: "NewBee"}
-//	gotGpEE := gp.UpdateGivee(newGive)
-//	gotGpER := gp.UpdateGiver(newGive)
-//	if gotGpEE != gpGe {
-//		t.Fatalf("(%v) UpdateGivee(%v) == %v, want %v", gp, newGive, gotGpEE, gpGe)
-//	}
-//	if gotGpER != gpGr {
-//		t.Fatalf("(%v) UpdateGiver(%v) == %v, want %v", gp, newGive, gotGpER, gpGr)
-//	}
+import "testing"
+
+//"A Player" should "return an updated giftHistory" in {
+//assert(Player.updateGiftHistory(Vector(GiftPair("nope", "yup")))(player) ==
+//Player("Paul McCartney", Vector(GiftPair("nope", "yup"))))
 //}
 //
+//it should "convert from JSON" in {
+//val plrJson: Either[Error, Player] = Player.jsonStringToPlayer(jsonStringPlr)
+//assert(plrJson == Right(player))
+//}
+//
+//it should "convert to JSON" in {
+//val plrJson: JsonString = Player.playerToJsonString(player)
+//assert(plrJson == jsonStringPlr)
+//}
+//}
+
+var jsonStringPlr = "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
+var player = Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}}
+
+func TestUpdateGiftHistory(t *testing.T) {
+	newGH := GiftHistory{{Givee: "nope", Giver: "yup"}}
+	newPlayer := Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "nope", Giver: "yup"}}}.String()
+	gotPlayer := player.UpdateGiftHistory(newGH).String()
+	if gotPlayer != newPlayer {
+		t.Fatalf("(%v) UpdateGiftHistory(%v) ==\n%v,\nwant %v", player, newGH, gotPlayer, newPlayer)
+	}
+}
+
 //func TestJsonStringToGiftPair(t *testing.T) {
 //	gotGP, _ := JsonStringToGiftPair(jsonStringGP)
 //	if gotGP != gp {
