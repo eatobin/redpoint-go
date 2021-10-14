@@ -2,22 +2,6 @@ package player
 
 import "testing"
 
-//"A Player" should "return an updated giftHistory" in {
-//assert(Player.updateGiftHistory(Vector(GiftPair("nope", "yup")))(player) ==
-//Player("Paul McCartney", Vector(GiftPair("nope", "yup"))))
-//}
-//
-//it should "convert from JSON" in {
-//val plrJson: Either[Error, Player] = Player.jsonStringToPlayer(jsonStringPlr)
-//assert(plrJson == Right(player))
-//}
-//
-//it should "convert to JSON" in {
-//val plrJson: JsonString = Player.playerToJsonString(player)
-//assert(plrJson == jsonStringPlr)
-//}
-//}
-
 var jsonStringPlr = "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
 var player = Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}}
 
@@ -37,9 +21,9 @@ func TestJsonStringToPlayer(t *testing.T) {
 	}
 }
 
-//func TestGiftPairToJsonString(t *testing.T) {
-//	gotString, _ := gp.GiftPairToJsonString()
-//	if gotString != jsonStringGP {
-//		t.Fatalf("(%v) JsonStringToGiftPair() == %v, want %v", gp, gotString, jsonStringGP)
-//	}
-//}
+func TestPlayerToJsonString(t *testing.T) {
+	gotString, _ := player.PlayerToJsonString()
+	if gotString != jsonStringPlr {
+		t.Fatalf("(%v) JsonStringToPlayer() ==\n%v,\nwant %v", player, gotString, jsonStringPlr)
+	}
+}
