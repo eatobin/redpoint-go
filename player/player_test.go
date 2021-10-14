@@ -30,13 +30,13 @@ func TestUpdateGiftHistory(t *testing.T) {
 	}
 }
 
-//func TestJsonStringToGiftPair(t *testing.T) {
-//	gotGP, _ := JsonStringToGiftPair(jsonStringGP)
-//	if gotGP != gp {
-//		t.Fatalf("JsonStringToGiftPair(%v) == %v, want %v", jsonStringGP, gotGP, gp)
-//	}
-//}
-//
+func TestJsonStringToPlayer(t *testing.T) {
+	gotPlayer, _ := JsonStringToPlayer(jsonStringPlr)
+	if gotPlayer.String() != player.String() {
+		t.Fatalf("JsonStringToGiftPlayer(%v) ==\n%v,\nwant %v", jsonStringPlr, gotPlayer.String(), player.String())
+	}
+}
+
 //func TestGiftPairToJsonString(t *testing.T) {
 //	gotString, _ := gp.GiftPairToJsonString()
 //	if gotString != jsonStringGP {
