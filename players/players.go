@@ -15,3 +15,7 @@ func UpdatePlayer(playerKey string, player Player, players Players) Players {
 	players[playerKey] = player
 	return players
 }
+
+func GetPlayerName(playerKey string, players Players) string {
+	return players[playerKey].PlayerName
+}
