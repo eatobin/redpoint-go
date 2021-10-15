@@ -11,6 +11,16 @@ type GiftPair struct {
 	Giver string `json:"giver"`
 }
 
+func CompareGiftPair(a, b GiftPair) bool {
+	if &a == &b {
+		return true
+	}
+	if a.Givee != b.Givee || a.Giver != b.Giver {
+		return false
+	}
+	return true
+}
+
 // UpdateGivee updates a Givee in a GiftPair
 func (gp GiftPair) UpdateGivee(givee string) GiftPair {
 	gp.Givee = givee
