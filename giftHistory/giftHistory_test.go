@@ -19,15 +19,13 @@ func TestCompareGiftHistory(t *testing.T) {
 	}
 }
 
-//func TestAddYear(t *testing.T) {
-//
-//
-//
-//	if !GHcompare(AddYear("NewBee", ghB), giftHistoryExtended) {
-//		t.Fatalf("AddYear(%s, %v) == %v,\nwant %v", "NewBee", ghA, ghB, giftHistoryExtended)
-//	}
-//}
-//
+func TestAddYear(t *testing.T) {
+	gotAdd := AddYear("NewBee", ghB)
+	if !CompareGiftHistory(gotAdd, giftHistoryExtended) {
+		t.Fatalf("AddYear(%s, %v) == %v,\nwant %v", "NewBee", ghA, gotAdd, giftHistoryExtended)
+	}
+}
+
 //func TestUpdateGiftHistory(t *testing.T) {
 //	giftHistoryBase := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
 //	giftHistory := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
