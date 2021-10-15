@@ -8,7 +8,7 @@ import (
 type GiftPair = giftPair.GiftPair
 type GiftHistory = []GiftPair
 
-// CompareGiftHistory compares two GiftPairs
+// CompareGiftHistory compares two GiftHistories
 func CompareGiftHistory(a, b GiftHistory) bool {
 	if len(a) != len(b) {
 		return false
