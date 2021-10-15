@@ -14,7 +14,7 @@ func CompareGiftHistory(a, b GiftHistory) bool {
 		return false
 	}
 	for i, v := range a {
-		if v != b[i] {
+		if !giftPair.CompareGiftPair(v, b[i]) {
 			return false
 		}
 	}
