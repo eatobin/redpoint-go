@@ -11,6 +11,7 @@ type GiftPair struct {
 	Giver string `json:"giver"`
 }
 
+// CompareGiftPair compares two GiftPairs
 func CompareGiftPair(a, b GiftPair) bool {
 	if &a == &b {
 		return true

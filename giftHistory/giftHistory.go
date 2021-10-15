@@ -8,9 +8,8 @@ import (
 type GiftPair = giftPair.GiftPair
 type GiftHistory = []GiftPair
 
-// GHcompare tells whether GHa and GHb contain the same elements.
-// A nil argument is equivalent to an empty slice.
-func GHcompare(a, b []GiftPair) bool {
+// CompareGiftHistory compares two GiftPairs
+func CompareGiftHistory(a, b GiftHistory) bool {
 	if len(a) != len(b) {
 		return false
 	}
