@@ -16,6 +16,32 @@ type Player struct {
 	GiftHistory GiftHistory `json:"giftHistory"`
 }
 
+//TODO Define ComparePlayer
+type T struct {
+	X int
+	Y string
+	Z []int
+	M map[string]int
+}
+
+func ComparePlayer(a, b Player) bool {
+	if &a == &b {
+		return true
+	}
+	if a.PlayerName != b.PlayerName {
+		return false
+	}
+	if len(a.GiftHistory) != len(b.GiftHistory) {
+		return false
+	}
+	for k, v := range a.GiftHistory {
+		if b.GiftHistory[k] != v {
+			return false
+		}
+	}
+	return true
+}
+
 // UpdateGiftHistory updates a GiftHistory in a Player
 func (player Player) UpdateGiftHistory(gh GiftHistory) Player {
 	player.GiftHistory = gh
