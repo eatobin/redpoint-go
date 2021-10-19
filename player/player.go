@@ -16,6 +16,7 @@ type Player struct {
 	GiftHistory GiftHistory `json:"giftHistory"`
 }
 
+// ComparePlayer compares two Players
 func ComparePlayer(a, b Player) bool {
 	if &a == &b {
 		return true

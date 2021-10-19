@@ -10,14 +10,12 @@ type GiftHistory = giftHistory.GiftHistory
 type Player = player.Player
 type Players = map[string]Player
 
-// ComparePlayers tells whether PlayersA and PlayersB contain the same elements.
-// A nil argument is equivalent to an empty slice.
 func ComparePlayers(a, b Players) bool {
 	if len(a) != len(b) {
 		return false
 	}
 	for k, v := range a {
-		if player.ComparePlayer(v, b[k]) {
+		if !player.ComparePlayer(v, b[k]) {
 			return false
 		}
 	}

@@ -4,15 +4,14 @@ import (
 	"testing"
 )
 
-//import "testing"
-
-var jsonStringPlrs = "{\"PauMcc\":{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]},\"GeoHar\":{\"playerName\":\"George Harrison\",\"giftHistory\":[{\"givee\":\"RinSta\",\"giver\":\"PauMcc\"}]},\"JohLen\":{\"playerName\":\"John Lennon\",\"giftHistory\":[{\"givee\":\"PauMcc\",\"giver\":\"RinSta\"}]},\"RinSta\":{\"playerName\":\"Ringo Starr\",\"giftHistory\":[{\"givee\":\"JohLen\",\"giver\":\"GeoHar\"}]}}"
+var jsonStringPlayers = "{\"PauMcc\":{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]},\"GeoHar\":{\"playerName\":\"George Harrison\",\"giftHistory\":[{\"givee\":\"RinSta\",\"giver\":\"PauMcc\"}]},\"JohLen\":{\"playerName\":\"John Lennon\",\"giftHistory\":[{\"givee\":\"PauMcc\",\"giver\":\"RinSta\"}]},\"RinSta\":{\"playerName\":\"Ringo Starr\",\"giftHistory\":[{\"givee\":\"JohLen\",\"giver\":\"GeoHar\"}]}}"
 var rinSta = Player{PlayerName: "Ringo Starr", GiftHistory: GiftHistory{{Givee: "JohLen", Giver: "GeoHar"}}}
 var johLen = Player{PlayerName: "John Lennon", GiftHistory: GiftHistory{{Givee: "PauMcc", Giver: "RinSta"}}}
 var geoHar = Player{PlayerName: "George Harrison", GiftHistory: GiftHistory{{Givee: "RinSta", Giver: "PauMcc"}}}
 var pauMcc = Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}}
-var players = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
-
+var playersA = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
+var playersB = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
+var playersC = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar}
 var newBee = Player{PlayerName: "New Bee", GiftHistory: GiftHistory{{Givee: "NewBee", Giver: "NewBee"}}}
 var newBeePlayers = Players{"RinSta": newBee, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
 
@@ -33,11 +32,23 @@ var newBeePlayers = Players{"RinSta": newBee, "JohLen": johLen, "GeoHar": geoHar
 //var jsonStringPlr = "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
 //var player = Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}}
 
+func TestComparePlayers(t *testing.T) {
+	if !ComparePlayers(playersA, playersB) {
+		t.Fatalf("ComparePlayers(%v,\n%v) == %t, want %t", playersA, playersB, false, true)
+	}
+	if ComparePlayers(playersB, newBeePlayers) {
+		t.Fatalf("ComparePlayers(%v,\n%v) == %t, want %t", playersB, newBeePlayers, true, false)
+	}
+	if ComparePlayers(playersB, playersC) {
+		t.Fatalf("ComparePlayers(%v,\n%v) == %t, want %t", playersB, playersC, true, false)
+	}
+}
+
 func TestUpdatePlayer(t *testing.T) {
-	goodBee := Player{PlayerName: "New Bee", GiftHistory: GiftHistory{{Givee: "NewBee", Giver: "NewBeeX"}}}
-	gotPlayers := UpdatePlayer("RinSta", goodBee, players)
-	if ComparePlayers(gotPlayers, newBeePlayers) {
-		t.Fatalf("UpdatePlayer(%s, %v, %v) ==\n%v,\nwant %v", "RinSta", newBee, players, gotPlayers, goodBee)
+	goodBee := Player{PlayerName: "New Bee", GiftHistory: GiftHistory{{Givee: "NewBee", Giver: "NewBee"}}}
+	gotPlayers := UpdatePlayer("RinSta", goodBee, playersA)
+	if !ComparePlayers(gotPlayers, newBeePlayers) {
+		t.Fatalf("UpdatePlayer(%s, %v, %v) ==\n%v,\nwant %v", "RinSta", newBee, playersA, gotPlayers, newBeePlayers)
 	}
 }
 
