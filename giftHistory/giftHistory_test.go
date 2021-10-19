@@ -26,32 +26,32 @@ func TestAddYear(t *testing.T) {
 	}
 }
 
-//func TestUpdateGiftHistory(t *testing.T) {
-//	giftHistoryBase := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
-//	giftHistory := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
-//	giftHistoryMeYou := GiftHistory{{Givee: "me", Giver: "you"}}
-//
-//	if !GHcompare(UpdateGiftHistory(0, GiftPair{Givee: "me", Giver: "you"}, giftHistory), giftHistoryMeYou) {
-//		t.Fatalf("UpdateGiftHistory(%d, %v, %v) == %v,\nwant %v", 0, GiftPair{Givee: "me", Giver: "you"}, giftHistoryBase, giftHistory, giftHistoryMeYou)
-//	}
-//}
-//
-//func TestJsonStringToGiftHistory(t *testing.T) {
-//	jsonStringGH := "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
-//	giftHistory := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
-//	gotGH, _ := JsonStringToGiftHistory(jsonStringGH)
-//
-//	if !GHcompare(giftHistory, gotGH) {
-//		t.Fatalf("JsonStringToGiftHistory(%s) == %v,\nwant %v", jsonStringGH, gotGH, giftHistory)
-//	}
-//}
-//
-//func TestGiftHistoryToJsonString(t *testing.T) {
-//	jsonStringGH := "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
-//	giftHistory := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
-//	gotGHstring, _ := GHToJsonString(giftHistory)
-//
-//	if jsonStringGH != gotGHstring {
-//		t.Fatalf("GHToJsonString(%v) == %s,\nwant %s", giftHistory, gotGHstring, jsonStringGH)
-//	}
-//}
+func TestUpdateGiftHistory(t *testing.T) {
+	giftHistoryBase := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
+	giftHistory := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
+	giftHistoryMeYou := GiftHistory{{Givee: "me", Giver: "you"}}
+
+	if !CompareGiftHistory(UpdateGiftHistory(0, GiftPair{Givee: "me", Giver: "you"}, giftHistory), giftHistoryMeYou) {
+		t.Fatalf("UpdateGiftHistory(%d, %v, %v) == %v,\nwant %v", 0, GiftPair{Givee: "me", Giver: "you"}, giftHistoryBase, giftHistory, giftHistoryMeYou)
+	}
+}
+
+func TestJsonStringToGiftHistory(t *testing.T) {
+	jsonStringGH := "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
+	giftHistory := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
+	gotGH, _ := JsonStringToGiftHistory(jsonStringGH)
+
+	if !CompareGiftHistory(giftHistory, gotGH) {
+		t.Fatalf("JsonStringToGiftHistory(%s) == %v,\nwant %v", jsonStringGH, gotGH, giftHistory)
+	}
+}
+
+func TestGiftHistoryToJsonString(t *testing.T) {
+	jsonStringGH := "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
+	giftHistory := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
+	gotGHstring, _ := GHToJsonString(giftHistory)
+
+	if jsonStringGH != gotGHstring {
+		t.Fatalf("GHToJsonString(%v) == %s,\nwant %s", giftHistory, gotGHstring, jsonStringGH)
+	}
+}
