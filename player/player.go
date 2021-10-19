@@ -16,14 +16,6 @@ type Player struct {
 	GiftHistory GiftHistory `json:"giftHistory"`
 }
 
-//TODO Define ComparePlayer
-type T struct {
-	X int
-	Y string
-	Z []int
-	M map[string]int
-}
-
 func ComparePlayer(a, b Player) bool {
 	if &a == &b {
 		return true
