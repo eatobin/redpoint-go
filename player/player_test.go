@@ -16,9 +16,12 @@ func TestComparePlayer(t *testing.T) {
 	if ComparePlayer(playerB, playerC) {
 		t.Fatalf("ComparePlayer(%v,\n%v) == %t, want %t", playerB, playerC, true, false)
 	}
-	//if ComparePlayer(ghA, giftHistoryExtended) {
-	//	t.Fatalf("ComparePlayer(%v, %v) == %t, want %t", ghA, giftHistoryExtended, true, false)
-	//}
+	if ComparePlayer(playerB, playerD) {
+		t.Fatalf("ComparePlayer(%v,\n%v) == %t, want %t", playerB, playerD, true, false)
+	}
+	if ComparePlayer(playerB, playerE) {
+		t.Fatalf("ComparePlayer(%v,\n%v) == %t, want %t", playerB, playerE, true, false)
+	}
 }
 
 func TestUpdateGiftHistory(t *testing.T) {
