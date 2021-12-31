@@ -1,8 +1,8 @@
 package players
 
 import (
-	"github.com/eatobin/redpointGo/giftHistory"
-	"github.com/eatobin/redpointGo/player"
+	"github.com/eatobin/redpoint-go/giftHistory"
+	"github.com/eatobin/redpoint-go/player"
 )
 
 //type GiftPair = giftPair.GiftPair

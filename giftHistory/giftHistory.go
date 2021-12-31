@@ -2,7 +2,7 @@ package giftHistory
 
 import (
 	"encoding/json"
-	"github.com/eatobin/redpointGo/giftPair"
+	"github.com/eatobin/redpoint-go/giftPair"
 )
 
 type GiftPair = giftPair.GiftPair

@@ -3,8 +3,8 @@ package player
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/eatobin/redpointGo/giftHistory"
-	"github.com/eatobin/redpointGo/giftPair"
+	"github.com/eatobin/redpoint-go/giftHistory"
+	"github.com/eatobin/redpoint-go/giftPair"
 )
 
 type GiftPair = giftPair.GiftPair

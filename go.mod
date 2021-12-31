@@ -1,3 +1,3 @@
-module github.com/eatobin/redpointGo
+module github.com/eatobin/redpoint-go
 
 go 1.17
