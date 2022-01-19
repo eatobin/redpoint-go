@@ -5,10 +5,13 @@ import (
 	"fmt"
 )
 
+type Givee = string
+type Giver = string
+
 // A GiftPair has a Givee and a Giver
 type GiftPair struct {
-	Givee string `json:"givee"`
-	Giver string `json:"giver"`
+	Givee Givee `json:"givee"`
+	Giver Giver `json:"giver"`
 }
 
 // CompareGiftPair compares two GiftPairs

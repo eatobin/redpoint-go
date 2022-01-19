@@ -2,9 +2,13 @@ package players
 
 import (
 	"github.com/eatobin/redpoint-go/giftHistory"
+	"github.com/eatobin/redpoint-go/giftPair"
 	"github.com/eatobin/redpoint-go/player"
 )
 
+type Givee = giftPair.Givee
+type Giver = giftPair.Giver
+type GiftPair = giftPair.GiftPair
 type GiftHistory = giftHistory.GiftHistory
 type Player = player.Player
 type Players = map[string]Player
@@ -40,10 +44,10 @@ func AddYear(players Players) Players {
 	return players
 }
 
-func GetGivee(selfKey string, giftYear int, players Players) string {
+func GetGivee(selfKey string, giftYear int, players Players) Givee {
 	return players[selfKey].GiftHistory[giftYear].Givee
 }
 
-func GetGiver(selfKey string, giftYear int, players Players) string {
+func GetGiver(selfKey string, giftYear int, players Players) Giver {
 	return players[selfKey].GiftHistory[giftYear].Giver
 }
