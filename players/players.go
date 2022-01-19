@@ -5,7 +5,6 @@ import (
 	"github.com/eatobin/redpoint-go/player"
 )
 
-//type GiftPair = giftPair.GiftPair
 type GiftHistory = giftHistory.GiftHistory
 type Player = player.Player
 type Players = map[string]Player
@@ -39,4 +38,12 @@ func AddYear(players Players) Players {
 		players[playerKey] = nplr
 	}
 	return players
+}
+
+func GetGivee(selfKey string, giftYear int, players Players) string {
+	return players[selfKey].GiftHistory[giftYear].Givee
+}
+
+func GetGiver(selfKey string, giftYear int, players Players) string {
+	return players[selfKey].GiftHistory[giftYear].Giver
 }
