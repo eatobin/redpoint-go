@@ -30,3 +30,13 @@ func UpdatePlayer(playerKey string, player Player, players Players) Players {
 func GetPlayerName(playerKey string, players Players) string {
 	return players[playerKey].PlayerName
 }
+
+func AddYear(players Players) Players {
+	for playerKey, thisPlayer := range players {
+		gh := thisPlayer.GiftHistory
+		ngh := giftHistory.AddYear(playerKey, gh)
+		nplr := thisPlayer.UpdateGiftHistory(ngh)
+		players[playerKey] = nplr
+	}
+	return players
+}
