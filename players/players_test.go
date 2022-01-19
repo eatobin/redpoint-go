@@ -15,22 +15,19 @@ var playersC = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar}
 var newBee = Player{PlayerName: "New Bee", GiftHistory: GiftHistory{{Givee: "NewBee", Giver: "NewBee"}}}
 var newBeePlayers = Players{"RinSta": newBee, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
 
-//private val rinStaExt: Player = Player("Ringo Starr", Vector(GiftPair("JohLen", "GeoHar"), GiftPair("RinSta", "RinSta")))
-//private val johLenExt: Player = Player("John Lennon", Vector(GiftPair("PauMcc", "RinSta"), GiftPair("JohLen", "JohLen")))
-//private val geoHarExt: Player = Player("George Harrison", Vector(GiftPair("RinSta", "PauMcc"), GiftPair("GeoHar", "GeoHar")))
-//private val pauMccExt: Player = Player("Paul McCartney", Vector(GiftPair("GeoHar", "JohLen"), GiftPair("PauMcc", "PauMcc")))
-//private val playersExt: Map[String, Player] =
-//Map("RinSta" -> rinStaExt, "JohLen" -> johLenExt, "GeoHar" -> geoHarExt, "PauMcc" -> pauMccExt)
-//
-//private val geoHarGivee: Player = Player("George Harrison", Vector(GiftPair("you", "PauMcc")))
-//private val geoHarGiver: Player = Player("George Harrison", Vector(GiftPair("RinSta", "you")))
-//private val playersGivee: Map[String, Player] =
-//Map("RinSta" -> rinSta, "JohLen" -> johLen, "GeoHar" -> geoHarGivee, "PauMcc" -> pauMcc)
-//private val playersGiver: Map[String, Player] =
-//Map("RinSta" -> rinSta, "JohLen" -> johLen, "GeoHar" -> geoHarGiver, "PauMcc" -> pauMcc)
+var rinStaExt = Player{PlayerName: "Ringo Starr", GiftHistory: GiftHistory{{Givee: "JohLen", Giver: "GeoHar"}, {Givee: "RinSta", Giver: "RinSta"}}}
+var johLenExt = Player{PlayerName: "John Lennon", GiftHistory: GiftHistory{{Givee: "PauMcc", Giver: "RinSta"}, {Givee: "JohLen", Giver: "JohLen"}}}
+var geoHarExt = Player{PlayerName: "George Harrison", GiftHistory: GiftHistory{{Givee: "RinSta", Giver: "PauMcc"}, {Givee: "GeoHar", Giver: "GeoHar"}}}
+var pauMccExt = Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "PauMcc", Giver: "PauMcc"}}}
+var playersExt = Players{"RinSta": rinStaExt, "JohLen": johLenExt, "GeoHar": geoHarExt, "PauMcc": pauMccExt}
 
-//var jsonStringPlr = "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
-//var player = Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}}
+var geoHarGivee = Player{PlayerName: "George Harrison", GiftHistory: GiftHistory{{Givee: "you", Giver: "PauMcc"}}}
+var geoHarGiver = Player{PlayerName: "George Harrison", GiftHistory: GiftHistory{{Givee: "RinSta", Giver: "you"}}}
+var playersGivee = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHarGivee, "PauMcc": pauMcc}
+var playersGiver = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHarGiver, "PauMcc": pauMcc}
+
+var jsonStringPlr = "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
+var player = Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}}
 
 func TestComparePlayers(t *testing.T) {
 	if !ComparePlayers(playersA, playersB) {
@@ -52,17 +49,25 @@ func TestUpdatePlayer(t *testing.T) {
 	}
 }
 
-//
-//func TestJsonStringToPlayer(t *testing.T) {
-//	gotPlayer, _ := JsonStringToPlayer(jsonStringPlr)
-//	if gotPlayer.String() != player.String() {
-//		t.Fatalf("JsonStringToGiftPlayer(%v) ==\n%v,\nwant %v", jsonStringPlr, gotPlayer.String(), player.String())
-//	}
+//it should "return a player name" in {
+//assert(Players.getPlayerName("PauMcc")(players) == "Paul McCartney")
 //}
 //
-//func TestPlayerToJsonString(t *testing.T) {
-//	gotString, _ := player.PlayerToJsonString()
-//	if gotString != jsonStringPlr {
-//		t.Fatalf("(%v) JsonStringToPlayer() ==\n%v,\nwant %v", player, gotString, jsonStringPlr)
-//	}
+//it should "add a new year" in {
+//assert(Players.addYear(players) == playersExt)
+//}
+//
+//it should "return a givee and a giver" in {
+//assert(Players.getGivee("GeoHar")(0)(players) == "RinSta")
+//assert(Players.getGiver("GeoHar")(0)(players) == "PauMcc")
+//}
+//
+//it should "update a givee and a giver" in {
+//assert(Players.updateGivee("GeoHar")(0)("you")(players) == playersGivee)
+//assert(Players.updateGiver("GeoHar")(0)("you")(players) == playersGiver)
+//}
+//
+//it should "convert from JSON" in {
+//val plrsJson: Either[Error, Map[String, Player]] = Players.jsonStringToPlayers(jsonStringPlrs)
+//assert(plrsJson == Right(players))
 //}
