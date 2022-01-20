@@ -49,6 +49,13 @@ func TestUpdatePlayer(t *testing.T) {
 	}
 }
 
+func TestGetPlayerName(t *testing.T) {
+	name := GetPlayerName("PaulMcc", playersA)
+	if name != "Paul McCartney" {
+		t.Fatalf("GetPlayerName(%s, %v) = \n%s\nwant %s", "PaulMcc", playersA, name, "Paul McCartney")
+	}
+}
+
 //it should "return a player name" in {
 //assert(Players.getPlayerName("PauMcc")(players) == "Paul McCartney")
 //}
