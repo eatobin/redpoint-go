@@ -27,7 +27,6 @@ var playersGivee = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHarG
 var playersGiver = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHarGiver, "PauMcc": pauMcc}
 
 var jsonStringPlr = "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
-var player = Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}}
 
 func TestComparePlayers(t *testing.T) {
 	if !ComparePlayers(playersA, playersB) {
@@ -50,7 +49,7 @@ func TestUpdatePlayer(t *testing.T) {
 }
 
 func TestGetPlayerName(t *testing.T) {
-	name := GetPlayerName("PaulMcc", playersA)
+	name := GetPlayerName("PauMcc", playersA)
 	if name != "Paul McCartney" {
 		t.Fatalf("GetPlayerName(%s, %v) = \n%s\nwant %s", "PaulMcc", playersA, name, "Paul McCartney")
 	}
