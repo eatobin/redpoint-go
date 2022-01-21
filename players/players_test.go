@@ -29,6 +29,14 @@ var playersGiver = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHarG
 var jsonStringPlr = "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
 
 func TestComparePlayers(t *testing.T) {
+	var rinSta = Player{PlayerName: "Ringo Starr", GiftHistory: GiftHistory{{Givee: "JohLen", Giver: "GeoHar"}}}
+	var johLen = Player{PlayerName: "John Lennon", GiftHistory: GiftHistory{{Givee: "PauMcc", Giver: "RinSta"}}}
+	var geoHar = Player{PlayerName: "George Harrison", GiftHistory: GiftHistory{{Givee: "RinSta", Giver: "PauMcc"}}}
+	var pauMcc = Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}}
+	var playersA = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
+	var playersB = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
+	var playersC = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar}
+
 	if !ComparePlayers(playersA, playersB) {
 		t.Fatalf("ComparePlayers(%v,\n%v) == %t, want %t", playersA, playersB, false, true)
 	}
@@ -42,6 +50,12 @@ func TestComparePlayers(t *testing.T) {
 
 func TestUpdatePlayer(t *testing.T) {
 	goodBee := Player{PlayerName: "New Bee", GiftHistory: GiftHistory{{Givee: "NewBee", Giver: "NewBee"}}}
+	var rinSta = Player{PlayerName: "Ringo Starr", GiftHistory: GiftHistory{{Givee: "JohLen", Giver: "GeoHar"}}}
+	var johLen = Player{PlayerName: "John Lennon", GiftHistory: GiftHistory{{Givee: "PauMcc", Giver: "RinSta"}}}
+	var geoHar = Player{PlayerName: "George Harrison", GiftHistory: GiftHistory{{Givee: "RinSta", Giver: "PauMcc"}}}
+	var pauMcc = Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}}
+	var playersA = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
+
 	gotPlayers := UpdatePlayer("RinSta", goodBee, playersA)
 	if !ComparePlayers(gotPlayers, newBeePlayers) {
 		t.Fatalf("UpdatePlayer(%s, %v, %v) ==\n%v,\nwant %v", "RinSta", newBee, playersA, gotPlayers, newBeePlayers)
@@ -50,15 +64,36 @@ func TestUpdatePlayer(t *testing.T) {
 
 func TestGetPlayerName(t *testing.T) {
 	name := GetPlayerName("PauMcc", playersA)
+	var rinSta = Player{PlayerName: "Ringo Starr", GiftHistory: GiftHistory{{Givee: "JohLen", Giver: "GeoHar"}}}
+	var johLen = Player{PlayerName: "John Lennon", GiftHistory: GiftHistory{{Givee: "PauMcc", Giver: "RinSta"}}}
+	var geoHar = Player{PlayerName: "George Harrison", GiftHistory: GiftHistory{{Givee: "RinSta", Giver: "PauMcc"}}}
+	var pauMcc = Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}}
+	var playersA = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
+
 	if name != "Paul McCartney" {
 		t.Fatalf("GetPlayerName(%s, %v) = \n%s\nwant %s", "PaulMcc", playersA, name, "Paul McCartney")
 	}
 }
 
-//it should "return a player name" in {
-//assert(Players.getPlayerName("PauMcc")(players) == "Paul McCartney")
-//}
-//
+func TestAddYear(t *testing.T) {
+	var rinSta = Player{PlayerName: "Ringo Starr", GiftHistory: GiftHistory{{Givee: "JohLen", Giver: "GeoHar"}}}
+	var johLen = Player{PlayerName: "John Lennon", GiftHistory: GiftHistory{{Givee: "PauMcc", Giver: "RinSta"}}}
+	var geoHar = Player{PlayerName: "George Harrison", GiftHistory: GiftHistory{{Givee: "RinSta", Giver: "PauMcc"}}}
+	var pauMcc = Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}}
+	var playersA = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
+
+	var rinStaExt = Player{PlayerName: "Ringo Starr", GiftHistory: GiftHistory{{Givee: "JohLen", Giver: "GeoHar"}, {Givee: "RinSta", Giver: "RinSta"}}}
+	var johLenExt = Player{PlayerName: "John Lennon", GiftHistory: GiftHistory{{Givee: "PauMcc", Giver: "RinSta"}, {Givee: "JohLen", Giver: "JohLen"}}}
+	var geoHarExt = Player{PlayerName: "George Harrison", GiftHistory: GiftHistory{{Givee: "RinSta", Giver: "PauMcc"}, {Givee: "GeoHar", Giver: "GeoHar"}}}
+	var pauMccExt = Player{PlayerName: "Paul McCartney", GiftHistory: GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "PauMcc", Giver: "PauMcc"}}}
+	var playersExt = Players{"RinSta": rinStaExt, "JohLen": johLenExt, "GeoHar": geoHarExt, "PauMcc": pauMccExt}
+
+	newYear := AddYear(playersA)
+	if !ComparePlayers(newYear, playersExt) {
+		t.Fatalf("AddYear(%v) ==\n%v,\nwant %v", playersA, newYear, playersExt)
+	}
+}
+
 //it should "add a new year" in {
 //assert(Players.addYear(players) == playersExt)
 //}
