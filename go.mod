@@ -1,3 +1,3 @@
 module github.com/eatobin/redpoint-go
 
-go 1.18
+go 1.19
