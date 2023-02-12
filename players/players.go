@@ -3,13 +3,13 @@ package players
 import (
 	"encoding/json"
 	"github.com/eatobin/redpoint-go/giftHistory"
-	"github.com/eatobin/redpoint-go/giftPair"
+	"github.com/eatobin/redpoint-go/giftPairPkg"
 	"github.com/eatobin/redpoint-go/player"
 )
 
-type Givee = giftPair.Givee
-type Giver = giftPair.Giver
-type GiftPair = giftPair.GiftPair
+type Givee = giftPairPkg.Givee
+type Giver = giftPairPkg.Giver
+type GiftPair = giftPairPkg.GiftPair
 type GiftHistory = giftHistory.GiftHistory
 type Player = player.Player
 type Players = map[string]Player
@@ -60,12 +60,12 @@ func setGiftPair(playerKey string, giftYear int, giftPair GiftPair, players Play
 }
 
 func UpdateGivee(selfKey string, giftYear int, givee Givee, players Players) Players {
-	ngp := players[selfKey].GiftHistory[giftYear].UpdateGivee(givee)
+	ngp := players[selfKey].GiftHistory[giftYear].GiftPairUpdateGivee(givee)
 	return setGiftPair(selfKey, giftYear, ngp, players)
 }
 
 func UpdateGiver(selfKey string, giftYear int, giver Giver, players Players) Players {
-	ngp := players[selfKey].GiftHistory[giftYear].UpdateGiver(giver)
+	ngp := players[selfKey].GiftHistory[giftYear].GiftPairUpdateGiver(giver)
 	return setGiftPair(selfKey, giftYear, ngp, players)
 }
 

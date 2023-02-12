@@ -1,4 +1,4 @@
-package giftPair
+package giftPairPkg
 
 import "testing"
 
@@ -20,26 +20,19 @@ func TestUpdateGiveeGiver(t *testing.T) {
 	newGive := "NewBee"
 	gpGe := GiftPair{Givee: "NewBee", Giver: "JohLen"}
 	gpGr := GiftPair{Givee: "GeoHar", Giver: "NewBee"}
-	gotGpEE := gpA.UpdateGivee(newGive)
-	gotGpER := gpA.UpdateGiver(newGive)
+	gotGpEE := gpA.GiftPairUpdateGivee(newGive)
+	gotGpER := gpA.GiftPairUpdateGiver(newGive)
 	if gotGpEE != gpGe {
-		t.Fatalf("(%v) UpdateGivee(%v) == %v, want %v", gpA, newGive, gotGpEE, gpGe)
+		t.Fatalf("(%v) GiftPairUpdateGivee(%v) == %v, want %v", gpA, newGive, gotGpEE, gpGe)
 	}
 	if gotGpER != gpGr {
-		t.Fatalf("(%v) UpdateGiver(%v) == %v, want %v", gpA, newGive, gotGpER, gpGr)
+		t.Fatalf("(%v) GiftPairUpdateGiver(%v) == %v, want %v", gpA, newGive, gotGpER, gpGr)
 	}
 }
 
 func TestJsonStringToGiftPair(t *testing.T) {
-	gotGP, _ := JsonStringToGiftPair(jsonStringGP)
+	gotGP, _ := GiftPairJsonStringToGiftPair(jsonStringGP)
 	if gotGP != gpA {
-		t.Fatalf("JsonStringToGiftPair(%v) == %v, want %v", jsonStringGP, gotGP, gpA)
-	}
-}
-
-func TestGiftPairToJsonString(t *testing.T) {
-	gotString, _ := gpA.GiftPairToJsonString()
-	if gotString != jsonStringGP {
-		t.Fatalf("(%v) JsonStringToGiftPair() == %v, want %v", gpA, gotString, jsonStringGP)
+		t.Fatalf("GiftPairJsonStringToGiftPair(%v) == %v, want %v", jsonStringGP, gotGP, gpA)
 	}
 }

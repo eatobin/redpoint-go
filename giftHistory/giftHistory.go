@@ -2,10 +2,10 @@ package giftHistory
 
 import (
 	"encoding/json"
-	"github.com/eatobin/redpoint-go/giftPair"
+	"github.com/eatobin/redpoint-go/giftPairPkg"
 )
 
-type GiftPair = giftPair.GiftPair
+type GiftPair = giftPairPkg.GiftPair
 type GiftHistory = []GiftPair
 
 // CompareGiftHistory compares two GiftHistories
@@ -14,7 +14,7 @@ func CompareGiftHistory(a, b GiftHistory) bool {
 		return false
 	}
 	for i, v := range a {
-		if !giftPair.CompareGiftPair(v, b[i]) {
+		if !giftPairPkg.CompareGiftPair(v, b[i]) {
 			return false
 		}
 	}
