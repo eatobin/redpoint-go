@@ -2,37 +2,40 @@ package giftPairPkg
 
 import "testing"
 
-var jsonStringGP = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
-var gpA = GiftPair{Givee: "GeoHar", Giver: "JohLen"}
-var gpB = GiftPair{Givee: "GeoHar", Giver: "JohLen"}
-var gpC = GiftPair{Givee: "NotEven", Giver: "Close"}
+var jsonString = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
+var giftPair1 = GiftPair{Givee: "GeoHar", Giver: "JohLen"}
+var giftPair2 = GiftPair{Givee: "GeoHar", Giver: "JohLen"}
+var giftPair3 = GiftPair{Givee: "NotEven", Giver: "Close"}
 
 func TestCompareGiftPair(t *testing.T) {
-	if !CompareGiftPair(gpA, gpB) {
-		t.Fatalf("CompareGiftPair(%v, %v) == %t, want %t", gpA, gpB, false, true)
+	if !CompareGiftPair(giftPair1, giftPair2) {
+		t.Fatalf("Got: %v Want: %v", false, true)
 	}
-	if CompareGiftPair(gpB, gpC) {
-		t.Fatalf("CompareGiftPair(%v, %v) == %t, want %t", gpB, gpC, true, false)
-	}
-}
-
-func TestUpdateGiveeGiver(t *testing.T) {
-	newGive := "NewBee"
-	gpGe := GiftPair{Givee: "NewBee", Giver: "JohLen"}
-	gpGr := GiftPair{Givee: "GeoHar", Giver: "NewBee"}
-	gotGpEE := gpA.GiftPairUpdateGivee(newGive)
-	gotGpER := gpA.GiftPairUpdateGiver(newGive)
-	if gotGpEE != gpGe {
-		t.Fatalf("(%v) GiftPairUpdateGivee(%v) == %v, want %v", gpA, newGive, gotGpEE, gpGe)
-	}
-	if gotGpER != gpGr {
-		t.Fatalf("(%v) GiftPairUpdateGiver(%v) == %v, want %v", gpA, newGive, gotGpER, gpGr)
+	if CompareGiftPair(giftPair2, giftPair3) {
+		t.Fatalf("Got: %v Want: %v", true, false)
 	}
 }
 
-func TestJsonStringToGiftPair(t *testing.T) {
-	gotGP, _ := GiftPairJsonStringToGiftPair(jsonStringGP)
-	if gotGP != gpA {
-		t.Fatalf("GiftPairJsonStringToGiftPair(%v) == %v, want %v", jsonStringGP, gotGP, gpA)
+func TestGiftPairUpdateGivee(t *testing.T) {
+	got := giftPair1.GiftPairUpdateGivee("NewBee")
+	want := GiftPair{Givee: "NewBee", Giver: "JohLen"}
+	if !CompareGiftPair(got, want) {
+		t.Fatalf("Got: %v Want: %v", got, want)
+	}
+}
+
+func TestGiftPairUpdateGiver(t *testing.T) {
+	got := giftPair1.GiftPairUpdateGiver("NewBee")
+	want := GiftPair{Givee: "GeoHar", Giver: "NewBee"}
+	if !CompareGiftPair(got, want) {
+		t.Fatalf("Got: %v Want: %v", got, want)
+	}
+}
+
+func TestGiftPairJsonStringToGiftPair(t *testing.T) {
+	got, _ := GiftPairJsonStringToGiftPair(jsonString)
+	want := giftPair1
+	if !CompareGiftPair(got, want) {
+		t.Fatalf("Got: %v Want: %v", got, want)
 	}
 }
