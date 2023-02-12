@@ -7,12 +7,17 @@ var giftPair1 = GiftPair{Givee: "GeoHar", Giver: "JohLen"}
 var giftPair2 = GiftPair{Givee: "GeoHar", Giver: "JohLen"}
 var giftPair3 = GiftPair{Givee: "NotEven", Giver: "Close"}
 
-func TestGiftPairAssertEqual(t *testing.T) {
-	if !GiftPairAssertEqual(giftPair1, giftPair2) {
-		t.Fatalf("Got: %v Want: %v", false, true)
+func TestGiftPairAssertEqualTrue(t *testing.T) {
+	got := GiftPairAssertEqual(giftPair1, giftPair2)
+	if got != true {
+		t.Fatalf("Got: %v Want: %v", got, true)
 	}
-	if GiftPairAssertEqual(giftPair2, giftPair3) {
-		t.Fatalf("Got: %v Want: %v", true, false)
+}
+
+func TestGiftPairAssertEqualFalse(t *testing.T) {
+	got := GiftPairAssertEqual(giftPair1, giftPair3)
+	if got != false {
+		t.Fatalf("Got: %v Want: %v", got, false)
 	}
 }
 
