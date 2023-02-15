@@ -1,4 +1,4 @@
-package giftHistory
+package giftHistoryPkg
 
 import (
 	"encoding/json"
