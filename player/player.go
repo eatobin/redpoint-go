@@ -3,12 +3,12 @@ package player
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/eatobin/redpoint-go/giftHistory"
+	"github.com/eatobin/redpoint-go/giftHistoryPkg"
 	"github.com/eatobin/redpoint-go/giftPairPkg"
 )
 
 type GiftPair = giftPairPkg.GiftPair
-type GiftHistory = giftHistory.GiftHistory
+type GiftHistory = giftHistoryPkg.GiftHistory
 
 // A Player has a PlayerName and a GiftHistory
 type Player struct {

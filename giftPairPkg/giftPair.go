@@ -5,9 +5,9 @@ import (
 	"fmt"
 )
 
-type PlayerKey = string
-type Givee = PlayerKey
-type Giver = PlayerKey
+type PlayerKeyTA = string
+type Givee = PlayerKeyTA
+type Giver = PlayerKeyTA
 
 // A GiftPair has a Givee and a Giver
 type GiftPair struct {
