@@ -1,6 +1,9 @@
 package giftHistoryPkg
 
-import "testing"
+import (
+	"github.com/eatobin/redpoint-go/giftPairPkg"
+	"testing"
+)
 
 var ghA = GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
 var ghB = GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
@@ -8,20 +11,20 @@ var ghC = GiftHistory{{Givee: "NotEven", Giver: "Close"}}
 var giftHistoryExtended = GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}
 
 func TestCompareGiftHistory(t *testing.T) {
-	if !CompareGiftHistory(ghA, ghB) {
-		t.Fatalf("CompareGiftHistory(%v, %v) == %t, want %t", ghA, ghB, false, true)
+	if !GiftHistoryAssertEqual(ghA, ghB) {
+		t.Fatalf("GiftHistoryAssertEqual(%v, %v) == %t, want %t", ghA, ghB, false, true)
 	}
-	if CompareGiftHistory(ghB, ghC) {
+	if GiftHistoryAssertEqual(ghB, ghC) {
 		t.Fatalf("CompareGiftPair(%v, %v) == %t, want %t", ghB, ghC, true, false)
 	}
-	if CompareGiftHistory(ghA, giftHistoryExtended) {
+	if GiftHistoryAssertEqual(ghA, giftHistoryExtended) {
 		t.Fatalf("CompareGiftPair(%v, %v) == %t, want %t", ghA, giftHistoryExtended, true, false)
 	}
 }
 
 func TestAddYear(t *testing.T) {
 	gotAdd := AddYear("NewBee", ghB)
-	if !CompareGiftHistory(gotAdd, giftHistoryExtended) {
+	if !GiftHistoryAssertEqual(gotAdd, giftHistoryExtended) {
 		t.Fatalf("AddYear(%s, %v) == %v,\nwant %v", "NewBee", ghA, gotAdd, giftHistoryExtended)
 	}
 }
@@ -31,8 +34,8 @@ func TestUpdateGiftHistory(t *testing.T) {
 	giftHistory := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
 	giftHistoryMeYou := GiftHistory{{Givee: "me", Giver: "you"}}
 
-	if !CompareGiftHistory(UpdateGiftHistory(0, GiftPair{Givee: "me", Giver: "you"}, giftHistory), giftHistoryMeYou) {
-		t.Fatalf("UpdateGiftHistory(%d, %v, %v) == %v,\nwant %v", 0, GiftPair{Givee: "me", Giver: "you"}, giftHistoryBase, giftHistory, giftHistoryMeYou)
+	if !GiftHistoryAssertEqual(UpdateGiftHistory(0, giftPairPkg.GiftPair{Givee: "me", Giver: "you"}, giftHistory), giftHistoryMeYou) {
+		t.Fatalf("UpdateGiftHistory(%d, %v, %v) == %v,\nwant %v", 0, giftPairPkg.GiftPair{Givee: "me", Giver: "you"}, giftHistoryBase, giftHistory, giftHistoryMeYou)
 	}
 }
 
@@ -41,7 +44,7 @@ func TestJsonStringToGiftHistory(t *testing.T) {
 	giftHistory := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
 	gotGH, _ := JsonStringToGiftHistory(jsonStringGH)
 
-	if !CompareGiftHistory(giftHistory, gotGH) {
+	if !GiftHistoryAssertEqual(giftHistory, gotGH) {
 		t.Fatalf("JsonStringToGiftHistory(%s) == %v,\nwant %v", jsonStringGH, gotGH, giftHistory)
 	}
 }

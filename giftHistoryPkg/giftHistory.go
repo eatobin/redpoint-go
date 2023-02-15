@@ -5,11 +5,10 @@ import (
 	"github.com/eatobin/redpoint-go/giftPairPkg"
 )
 
-type GiftPair = giftPairPkg.GiftPair
-type GiftHistory = []GiftPair
+type GiftHistory = []giftPairPkg.GiftPair
 
-// CompareGiftHistory compares two GiftHistories
-func CompareGiftHistory(a, b GiftHistory) bool {
+// GiftHistoryAssertEqual compares two GiftHistories
+func GiftHistoryAssertEqual(a, b GiftHistory) bool {
 	if len(a) != len(b) {
 		return false
 	}
@@ -23,11 +22,11 @@ func CompareGiftHistory(a, b GiftHistory) bool {
 
 // AddYear adds a playerKey to each giftHistory
 func AddYear(playerKey string, giftHistory GiftHistory) GiftHistory {
-	return append(giftHistory, GiftPair{Givee: playerKey, Giver: playerKey})
+	return append(giftHistory, giftPairPkg.GiftPair{Givee: playerKey, Giver: playerKey})
 }
 
 // UpdateGiftHistory replaces a giftPair at a given giftYear
-func UpdateGiftHistory(giftYear int, giftPair GiftPair, giftHistory GiftHistory) GiftHistory {
+func UpdateGiftHistory(giftYear int, giftPair giftPairPkg.GiftPair, giftHistory GiftHistory) GiftHistory {
 	giftHistory[giftYear] = giftPair
 	return giftHistory
 }
