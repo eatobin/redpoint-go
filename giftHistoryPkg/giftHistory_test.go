@@ -16,15 +16,15 @@ func TestGiftHistoryAssertEqualTrue(t *testing.T) {
 	}
 }
 
-func TestGiftHistoryAssertEqualTrueExtended(t *testing.T) {
-	got := GiftHistoryAssertEqual(giftHistory1, giftHistory4)
+func TestGiftPairAssertEqualFalse(t *testing.T) {
+	got := GiftHistoryAssertEqual(giftHistory1, giftHistory3)
 	if got != false {
 		t.Fatalf("Got: %v Want: %v", got, false)
 	}
 }
 
-func TestGiftPairAssertEqualFalse(t *testing.T) {
-	got := GiftHistoryAssertEqual(giftHistory1, giftHistory3)
+func TestGiftHistoryAssertEqualFalseExtended(t *testing.T) {
+	got := GiftHistoryAssertEqual(giftHistory1, giftHistory4)
 	if got != false {
 		t.Fatalf("Got: %v Want: %v", got, false)
 	}
