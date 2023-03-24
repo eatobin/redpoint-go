@@ -20,6 +20,12 @@ func GiftHistoryAssertEqual(a, b GiftHistoryTA) bool {
 	return true
 }
 
+// GiftHistoryJsonStringToGiftHistory turns a GiftHistory into a GiftHistory JSON string
+func GiftHistoryJsonStringToGiftHistory(giftHistory GiftHistoryTA) (string, error) {
+	ghByte, err := json.Marshal(giftHistory)
+	return string(ghByte), err
+}
+
 // AddYear adds a playerKey to each giftHistory
 func AddYear(playerKey string, giftHistory GiftHistoryTA) GiftHistoryTA {
 	return append(giftHistory, giftPairPkg.GiftPair{Givee: playerKey, Giver: playerKey})
@@ -36,10 +42,4 @@ func JsonStringToGiftHistory(ghString string) (GiftHistoryTA, error) {
 	var giftHistory GiftHistoryTA
 	err := json.Unmarshal([]byte(ghString), &giftHistory)
 	return giftHistory, err
-}
-
-// GHToJsonString turns a GiftHistory into a GiftHistory JSON string
-func GHToJsonString(giftHistory GiftHistoryTA) (string, error) {
-	ghByte, err := json.Marshal(giftHistory)
-	return string(ghByte), err
 }
