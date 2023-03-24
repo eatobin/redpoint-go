@@ -41,12 +41,6 @@ func TestGiftHistoryJsonStringToGiftHistory(t *testing.T) {
 	}
 }
 
-//func TestJsonStringToGiftHistory(t *testing.T) {
-//	t.Parallel()
-//	want := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
-//	gotGH, _ := JsonStringToGiftHistory(jsonStringGH)
-//}
-
 //func TestAddYear(t *testing.T) {
 //	gotAdd := AddYear("NewBee", giftHistory2)
 //	if !GiftHistoryAssertEqual(gotAdd, giftHistory4) {
