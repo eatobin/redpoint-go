@@ -6,7 +6,6 @@ var giftHistory1 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
 var giftHistory2 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
 var giftHistory3 = GiftHistoryTA{{Givee: "NotEven", Giver: "Close"}}
 var giftHistory4 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}
-
 var jsonString = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
 
 func TestGiftHistoryAssertEqualTrue(t *testing.T) {
@@ -33,11 +32,11 @@ func TestGiftHistoryAssertEqualFalseExtended(t *testing.T) {
 	}
 }
 
-func TestJsonStringToGiftHistory(t *testing.T) {
+func TestGiftHistoryJsonStringToGiftHistory(t *testing.T) {
 	t.Parallel()
 	got, _ := GiftHistoryJsonStringToGiftHistory(jsonString)
-	want := giftPair1
-	if !GiftPairAssertEqual(got, want) {
+	want := giftHistory1
+	if !GiftHistoryAssertEqual(got, want) {
 		t.Fatalf("Got: %v Want: %v", got, want)
 	}
 }

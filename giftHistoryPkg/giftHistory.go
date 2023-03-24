@@ -20,26 +20,20 @@ func GiftHistoryAssertEqual(a, b GiftHistoryTA) bool {
 	return true
 }
 
-// GiftHistoryJsonStringToGiftHistory turns a GiftHistory into a GiftHistory JSON string
-func GiftHistoryJsonStringToGiftHistory(giftHistory GiftHistoryTA) (string, error) {
-	ghByte, err := json.Marshal(giftHistory)
-	return string(ghByte), err
-}
-
-// AddYear adds a playerKey to each giftHistory
-func AddYear(playerKey string, giftHistory GiftHistoryTA) GiftHistoryTA {
-	return append(giftHistory, giftPairPkg.GiftPair{Givee: playerKey, Giver: playerKey})
-}
-
-// UpdateGiftHistory replaces a giftPair at a given giftYear
-func UpdateGiftHistory(giftYear int, giftPair giftPairPkg.GiftPair, giftHistory GiftHistoryTA) GiftHistoryTA {
-	giftHistory[giftYear] = giftPair
-	return giftHistory
-}
-
-// GiftHistoryJsonStringToGiftHistory turns a GiftHistory JSON string into a GiftHistory
-func GiftHistoryJsonStringToGiftHistory(ghString string) (GiftHistoryTA, error) {
+// GiftHistoryJsonStringToGiftHistory turns a JSON string into a GiftHistory
+func GiftHistoryJsonStringToGiftHistory(jsonString giftPairPkg.JsonStringTA) (GiftHistoryTA, error) {
 	var giftHistory GiftHistoryTA
-	err := json.Unmarshal([]byte(ghString), &giftHistory)
+	err := json.Unmarshal([]byte(jsonString), &giftHistory)
 	return giftHistory, err
 }
+
+//// AddYear adds a playerKey to each giftHistory
+//func AddYear(playerKey string, giftHistory GiftHistoryTA) GiftHistoryTA {
+//	return append(giftHistory, giftPairPkg.GiftPair{Givee: playerKey, Giver: playerKey})
+//}
+//
+//// UpdateGiftHistory replaces a giftPair at a given giftYear
+//func UpdateGiftHistory(giftYear int, giftPair giftPairPkg.GiftPair, giftHistory GiftHistoryTA) GiftHistoryTA {
+//	giftHistory[giftYear] = giftPair
+//	return giftHistory
+//}
