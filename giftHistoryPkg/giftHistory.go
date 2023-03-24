@@ -37,8 +37,8 @@ func UpdateGiftHistory(giftYear int, giftPair giftPairPkg.GiftPair, giftHistory 
 	return giftHistory
 }
 
-// JsonStringToGiftHistory turns a GiftHistory JSON string into a GiftHistory
-func JsonStringToGiftHistory(ghString string) (GiftHistoryTA, error) {
+// GiftHistoryJsonStringToGiftHistory turns a GiftHistory JSON string into a GiftHistory
+func GiftHistoryJsonStringToGiftHistory(ghString string) (GiftHistoryTA, error) {
 	var giftHistory GiftHistoryTA
 	err := json.Unmarshal([]byte(ghString), &giftHistory)
 	return giftHistory, err

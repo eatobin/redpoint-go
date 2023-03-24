@@ -8,6 +8,7 @@ import (
 type PlayerKeyTA = string
 type GiveeTA = PlayerKeyTA
 type GiverTA = PlayerKeyTA
+type JsonStringTA = string
 
 // A GiftPair has a Givee and a Giver
 type GiftPair struct {
@@ -26,10 +27,10 @@ func GiftPairAssertEqual(a, b GiftPair) bool {
 	return true
 }
 
-// GiftPairJsonStringToGiftPair turns a GiftPair JSON string into a GiftPair
-func GiftPairJsonStringToGiftPair(gpString string) (GiftPair, error) {
+// GiftPairJsonStringToGiftPair turns a JSON string into a GiftPair
+func GiftPairJsonStringToGiftPair(jsonString JsonStringTA) (GiftPair, error) {
 	var giftPair GiftPair
-	err := json.Unmarshal([]byte(gpString), &giftPair)
+	err := json.Unmarshal([]byte(jsonString), &giftPair)
 	return giftPair, err
 }
 
