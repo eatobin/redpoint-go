@@ -7,8 +7,8 @@ import (
 	"github.com/eatobin/redpoint-go/player"
 )
 
-type Givee = giftPairPkg.Givee
-type Giver = giftPairPkg.Giver
+type Givee = giftPairPkg.GiveeTA
+type Giver = giftPairPkg.GiverTA
 type GiftPair = giftPairPkg.GiftPair
 type GiftHistory = giftHistoryPkg.GiftHistory
 type Player = player.Player

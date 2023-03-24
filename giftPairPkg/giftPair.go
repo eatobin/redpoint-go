@@ -6,13 +6,13 @@ import (
 )
 
 type PlayerKeyTA = string
-type Givee = PlayerKeyTA
-type Giver = PlayerKeyTA
+type GiveeTA = PlayerKeyTA
+type GiverTA = PlayerKeyTA
 
 // A GiftPair has a Givee and a Giver
 type GiftPair struct {
-	Givee Givee `json:"givee"`
-	Giver Giver `json:"giver"`
+	Givee GiveeTA `json:"givee"`
+	Giver GiverTA `json:"giver"`
 }
 
 // GiftPairAssertEqual compares two GiftPairs
@@ -26,14 +26,14 @@ func GiftPairAssertEqual(a, b GiftPair) bool {
 	return true
 }
 
-// GiftPairUpdateGivee updates a Givee in a GiftPair
-func (giftPair GiftPair) GiftPairUpdateGivee(givee Givee) GiftPair {
+// GiftPairUpdateGivee updates a GiveeTA in a GiftPair
+func (giftPair GiftPair) GiftPairUpdateGivee(givee GiveeTA) GiftPair {
 	giftPair.Givee = givee
 	return giftPair
 }
 
-// GiftPairUpdateGiver updates a Giver in a GiftPair
-func (giftPair GiftPair) GiftPairUpdateGiver(giver Giver) GiftPair {
+// GiftPairUpdateGiver updates a GiverTA in a GiftPair
+func (giftPair GiftPair) GiftPairUpdateGiver(giver GiverTA) GiftPair {
 	giftPair.Giver = giver
 	return giftPair
 }
