@@ -26,13 +26,20 @@ func GiftPairAssertEqual(a, b GiftPair) bool {
 	return true
 }
 
-// GiftPairUpdateGivee updates a GiveeTA in a GiftPair
+// GiftPairJsonStringToGiftPair turns a GiftPair JSON string into a GiftPair
+func GiftPairJsonStringToGiftPair(gpString string) (GiftPair, error) {
+	var giftPair GiftPair
+	err := json.Unmarshal([]byte(gpString), &giftPair)
+	return giftPair, err
+}
+
+// GiftPairUpdateGivee updates a Givee in a GiftPair
 func (giftPair GiftPair) GiftPairUpdateGivee(givee GiveeTA) GiftPair {
 	giftPair.Givee = givee
 	return giftPair
 }
 
-// GiftPairUpdateGiver updates a GiverTA in a GiftPair
+// GiftPairUpdateGiver updates a Giver in a GiftPair
 func (giftPair GiftPair) GiftPairUpdateGiver(giver GiverTA) GiftPair {
 	giftPair.Giver = giver
 	return giftPair
@@ -41,11 +48,4 @@ func (giftPair GiftPair) GiftPairUpdateGiver(giver GiverTA) GiftPair {
 // String makes a GiftPair into a string
 func (giftPair GiftPair) String() string {
 	return fmt.Sprintf("{Givee: %s, Giver: %s}", giftPair.Givee, giftPair.Giver)
-}
-
-// GiftPairJsonStringToGiftPair turns a GiftPair JSON string into a GiftPair
-func GiftPairJsonStringToGiftPair(gpString string) (GiftPair, error) {
-	var giftPair GiftPair
-	err := json.Unmarshal([]byte(gpString), &giftPair)
-	return giftPair, err
 }

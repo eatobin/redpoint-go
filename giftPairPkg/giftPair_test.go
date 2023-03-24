@@ -8,6 +8,7 @@ var giftPair2 = GiftPair{Givee: "GeoHar", Giver: "JohLen"}
 var giftPair3 = GiftPair{Givee: "NotEven", Giver: "Close"}
 
 func TestGiftPairAssertEqualTrue(t *testing.T) {
+	t.Parallel()
 	got := GiftPairAssertEqual(giftPair1, giftPair2)
 	if got != true {
 		t.Fatalf("Got: %v Want: %v", got, true)
@@ -15,6 +16,7 @@ func TestGiftPairAssertEqualTrue(t *testing.T) {
 }
 
 func TestGiftPairAssertEqualFalse(t *testing.T) {
+	t.Parallel()
 	got := GiftPairAssertEqual(giftPair1, giftPair3)
 	if got != false {
 		t.Fatalf("Got: %v Want: %v", got, false)
@@ -22,6 +24,7 @@ func TestGiftPairAssertEqualFalse(t *testing.T) {
 }
 
 func TestGiftPairUpdateGivee(t *testing.T) {
+	t.Parallel()
 	got := giftPair1.GiftPairUpdateGivee("NewBee")
 	want := GiftPair{Givee: "NewBee", Giver: "JohLen"}
 	if !GiftPairAssertEqual(got, want) {
@@ -30,6 +33,7 @@ func TestGiftPairUpdateGivee(t *testing.T) {
 }
 
 func TestGiftPairUpdateGiver(t *testing.T) {
+	t.Parallel()
 	got := giftPair1.GiftPairUpdateGiver("NewBee")
 	want := GiftPair{Givee: "GeoHar", Giver: "NewBee"}
 	if !GiftPairAssertEqual(got, want) {
@@ -38,6 +42,7 @@ func TestGiftPairUpdateGiver(t *testing.T) {
 }
 
 func TestGiftPairJsonStringToGiftPair(t *testing.T) {
+	t.Parallel()
 	got, _ := GiftPairJsonStringToGiftPair(jsonString)
 	want := giftPair1
 	if !GiftPairAssertEqual(got, want) {
