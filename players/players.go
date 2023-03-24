@@ -10,7 +10,7 @@ import (
 type Givee = giftPairPkg.GiveeTA
 type Giver = giftPairPkg.GiverTA
 type GiftPair = giftPairPkg.GiftPair
-type GiftHistory = giftHistoryPkg.GiftHistory
+type GiftHistory = giftHistoryPkg.GiftHistoryTA
 type Player = player.Player
 type Players = map[string]Player
 

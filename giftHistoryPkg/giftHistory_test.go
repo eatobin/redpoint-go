@@ -4,12 +4,13 @@ import (
 	"testing"
 )
 
-var giftHistory1 = GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
-var giftHistory2 = GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
-var giftHistory3 = GiftHistory{{Givee: "NotEven", Giver: "Close"}}
-var giftHistory4 = GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}
+var giftHistory1 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
+var giftHistory2 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
+var giftHistory3 = GiftHistoryTA{{Givee: "NotEven", Giver: "Close"}}
+var giftHistory4 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}
 
 func TestGiftHistoryAssertEqualTrue(t *testing.T) {
+	t.Parallel()
 	got := GiftHistoryAssertEqual(giftHistory1, giftHistory2)
 	if got != true {
 		t.Fatalf("Got: %v Want: %v", got, true)
@@ -17,6 +18,7 @@ func TestGiftHistoryAssertEqualTrue(t *testing.T) {
 }
 
 func TestGiftPairAssertEqualFalse(t *testing.T) {
+	t.Parallel()
 	got := GiftHistoryAssertEqual(giftHistory1, giftHistory3)
 	if got != false {
 		t.Fatalf("Got: %v Want: %v", got, false)
@@ -24,6 +26,7 @@ func TestGiftPairAssertEqualFalse(t *testing.T) {
 }
 
 func TestGiftHistoryAssertEqualFalseExtended(t *testing.T) {
+	t.Parallel()
 	got := GiftHistoryAssertEqual(giftHistory1, giftHistory4)
 	if got != false {
 		t.Fatalf("Got: %v Want: %v", got, false)

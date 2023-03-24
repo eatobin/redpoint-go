@@ -8,7 +8,7 @@ import (
 )
 
 type GiftPair = giftPairPkg.GiftPair
-type GiftHistory = giftHistoryPkg.GiftHistory
+type GiftHistory = giftHistoryPkg.GiftHistoryTA
 
 // A Player has a PlayerName and a GiftHistory
 type Player struct {
