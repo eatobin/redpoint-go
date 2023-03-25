@@ -4,10 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/eatobin/redpoint-go/giftHistoryPkg"
-	"github.com/eatobin/redpoint-go/giftPairPkg"
 )
 
-type GiftPair = giftPairPkg.GiftPair
+type GiftPair = giftPair.GiftPair
 type GiftHistory = giftHistoryPkg.GiftHistoryTA
 
 // A Player has a PlayerName and a GiftHistory

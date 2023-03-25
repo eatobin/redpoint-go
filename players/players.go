@@ -3,13 +3,12 @@ package players
 import (
 	"encoding/json"
 	"github.com/eatobin/redpoint-go/giftHistoryPkg"
-	"github.com/eatobin/redpoint-go/giftPairPkg"
 	"github.com/eatobin/redpoint-go/player"
 )
 
-type Givee = giftPairPkg.GiveeTA
-type Giver = giftPairPkg.GiverTA
-type GiftPair = giftPairPkg.GiftPair
+type Givee = giftPair.GiveeTA
+type Giver = giftPair.GiverTA
+type GiftPair = giftPair.GiftPair
 type GiftHistory = giftHistoryPkg.GiftHistoryTA
 type Player = player.Player
 type Players = map[string]Player

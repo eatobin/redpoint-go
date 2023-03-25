@@ -2,6 +2,7 @@ package giftPairPkg
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 )
 
@@ -31,6 +32,13 @@ func GiftPairAssertEqual(a, b GiftPair) bool {
 func GiftPairJsonStringToGiftPair(jsonString JsonStringTA) (GiftPair, error) {
 	var giftPair GiftPair
 	err := json.Unmarshal([]byte(jsonString), &giftPair)
+	if err != nil {
+		return GiftPair{}, err
+	}
+	if giftPair.Givee == "" || giftPair.Giver == "" {
+		err = errors.New("missing one or both field values")
+		return GiftPair{}, err
+	}
 	return giftPair, err
 }
 

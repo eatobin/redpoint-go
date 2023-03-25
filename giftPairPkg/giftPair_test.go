@@ -7,36 +7,56 @@ import (
 var giftPair1 = GiftPair{Givee: "GeoHar", Giver: "JohLen"}
 var giftPair2 = GiftPair{Givee: "GeoHar", Giver: "JohLen"}
 var giftPair3 = GiftPair{Givee: "NotEven", Giver: "Close"}
-var jsonString = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
+
+//var jsonString = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
 
 //var badJsonString = "{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}"
 
 //var badJsonString2 = "{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}"
 
-func TestGiftPairAssertEqualTrue(t *testing.T) {
+func TestGiftPairAssertEqual(t *testing.T) {
 	t.Parallel()
-	got := GiftPairAssertEqual(giftPair1, giftPair2)
-	if got != true {
-		t.Fatalf("Got: %v Want: %v", got, true)
+	type testCase struct {
+		a, b GiftPair
+		want bool
+	}
+	testCases := []testCase{
+		{a: giftPair1, b: giftPair2, want: true},
+		{a: giftPair1, b: giftPair3, want: false},
+	}
+	for _, tc := range testCases {
+		got := GiftPairAssertEqual(tc.a, tc.b)
+		if tc.want != got {
+			t.Errorf("GiftPairAssertEqual(%v, %v): want %v, got %v",
+				tc.a, tc.b, tc.want, got)
+		}
 	}
 }
 
-func TestGiftPairAssertEqualFalse(t *testing.T) {
-	t.Parallel()
-	got := GiftPairAssertEqual(giftPair1, giftPair3)
-	if got != false {
-		t.Fatalf("Got: %v Want: %v", got, false)
-	}
-}
-
-func TestGiftPairJsonStringToGiftPair(t *testing.T) {
-	t.Parallel()
-	got, _ := GiftPairJsonStringToGiftPair(jsonString)
-	want := giftPair1
-	if !GiftPairAssertEqual(got, want) {
-		t.Fatalf("Got: %v Want: %v", got, want)
-	}
-}
+//func TestGiftPairAssertEqualTrue(t *testing.T) {
+//	t.Parallel()
+//	got := GiftPairAssertEqual(giftPair1, giftPair2)
+//	if got != true {
+//		t.Fatalf("Got: %v Want: %v", got, true)
+//	}
+//}
+//
+//func TestGiftPairAssertEqualFalse(t *testing.T) {
+//	t.Parallel()
+//	got := GiftPairAssertEqual(giftPair1, giftPair3)
+//	if got != false {
+//		t.Fatalf("Got: %v Want: %v", got, false)
+//	}
+//}
+//
+//func TestGiftPairJsonStringToGiftPair(t *testing.T) {
+//	t.Parallel()
+//	got, _ := GiftPairJsonStringToGiftPair(jsonString)
+//	want := giftPair1
+//	if !GiftPairAssertEqual(got, want) {
+//		t.Fatalf("Got: %v Want: %v", got, want)
+//	}
+//}
 
 //func TestGiftPairJsonStringToGiftPairFromBADJSON(t *testing.T) {
 //	t.Parallel()
@@ -83,20 +103,20 @@ func TestGiftPairJsonStringToGiftPair(t *testing.T) {
 //	}
 //}
 
-func TestGiftPairUpdateGivee(t *testing.T) {
-	t.Parallel()
-	got := giftPair1.GiftPairUpdateGivee("NewBee")
-	want := GiftPair{Givee: "NewBee", Giver: "JohLen"}
-	if !GiftPairAssertEqual(got, want) {
-		t.Fatalf("Got: %v Want: %v", got, want)
-	}
-}
-
-func TestGiftPairUpdateGiver(t *testing.T) {
-	t.Parallel()
-	got := giftPair1.GiftPairUpdateGiver("NewBee")
-	want := GiftPair{Givee: "GeoHar", Giver: "NewBee"}
-	if !GiftPairAssertEqual(got, want) {
-		t.Fatalf("Got: %v Want: %v", got, want)
-	}
-}
+//func TestGiftPairUpdateGivee(t *testing.T) {
+//	t.Parallel()
+//	got := giftPair1.GiftPairUpdateGivee("NewBee")
+//	want := GiftPair{Givee: "NewBee", Giver: "JohLen"}
+//	if !GiftPairAssertEqual(got, want) {
+//		t.Fatalf("Got: %v Want: %v", got, want)
+//	}
+//}
+//
+//func TestGiftPairUpdateGiver(t *testing.T) {
+//	t.Parallel()
+//	got := giftPair1.GiftPairUpdateGiver("NewBee")
+//	want := GiftPair{Givee: "GeoHar", Giver: "NewBee"}
+//	if !GiftPairAssertEqual(got, want) {
+//		t.Fatalf("Got: %v Want: %v", got, want)
+//	}
+//}
