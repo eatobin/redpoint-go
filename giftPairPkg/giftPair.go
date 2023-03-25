@@ -3,7 +3,6 @@ package giftPairPkg
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 )
 
 type PlayerKeyTA = string
@@ -42,19 +41,19 @@ func GiftPairJsonStringToGiftPair(jsonString JsonStringTA) (GiftPair, error) {
 	return giftPair, err
 }
 
-// GiftPairUpdateGivee updates a Givee in a GiftPair
-func (giftPair GiftPair) GiftPairUpdateGivee(givee GiveeTA) GiftPair {
-	giftPair.Givee = givee
-	return giftPair
-}
-
-// GiftPairUpdateGiver updates a Giver in a GiftPair
-func (giftPair GiftPair) GiftPairUpdateGiver(giver GiverTA) GiftPair {
-	giftPair.Giver = giver
-	return giftPair
-}
-
-// String makes a GiftPair into a string
-func (giftPair GiftPair) String() string {
-	return fmt.Sprintf("{Givee: %s, Giver: %s}", giftPair.Givee, giftPair.Giver)
-}
+//// GiftPairUpdateGivee updates a Givee in a GiftPair
+//func (giftPair GiftPair) GiftPairUpdateGivee(givee GiveeTA) GiftPair {
+//	giftPair.Givee = givee
+//	return giftPair
+//}
+//
+//// GiftPairUpdateGiver updates a Giver in a GiftPair
+//func (giftPair GiftPair) GiftPairUpdateGiver(giver GiverTA) GiftPair {
+//	giftPair.Giver = giver
+//	return giftPair
+//}
+//
+//// String makes a GiftPair into a string
+//func (giftPair GiftPair) String() string {
+//	return fmt.Sprintf("{Givee: %s, Giver: %s}", giftPair.Givee, giftPair.Giver)
+//}
