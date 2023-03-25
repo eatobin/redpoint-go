@@ -27,7 +27,7 @@ func TestGiftPairAssertEqual(t *testing.T) {
 	for _, tc := range testCases {
 		got := GiftPairAssertEqual(tc.a, tc.b)
 		if tc.want != got {
-			t.Errorf("GiftPairAssertEqual(%v, %v): want %v, got %v",
+			t.Errorf("GiftPairAssertEqual(%v, %v): want %t, got %t",
 				tc.a, tc.b, tc.want, got)
 		}
 	}
