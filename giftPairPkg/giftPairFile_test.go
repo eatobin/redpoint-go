@@ -33,21 +33,31 @@ func TestGiftPairAssertEqual(t *testing.T) {
 
 func TestGiftPairJsonStringToGiftPair(t *testing.T) {
 	t.Parallel()
+	want := giftPair1
+	got, err := GiftPairJsonStringToGiftPair(jsonString)
+	if err != nil {
+		t.Fatalf("want no error for valid input, got: %v", err)
+	}
+	if want != got {
+		t.Errorf("GiftPairJsonStringToGiftPair(%s): want %v, got %v",
+			giftPair1, want, got)
+	}
+}
+
+func TestGiftPairJsonStringToGiftPairInvalid(t *testing.T) {
+	t.Parallel()
 	type testCase struct {
 		a    JsonStringTA
 		want GiftPairStruct
 	}
 	testCases := []testCase{
-		{a: jsonString, want: giftPair1},
+		{a: badJsonString},
+		{a: badJsonString2},
 	}
 	for _, tc := range testCases {
-		got, err := GiftPairJsonStringToGiftPair(tc.a)
-		if err != nil {
-			t.Fatalf("want no error for valid input, got: %v", err)
-		}
-		if tc.want != got {
-			t.Errorf("GiftPairJsonStringToGiftPair(%s): want %v, got %v",
-				tc.a, tc.want, got)
+		_, err := GiftPairJsonStringToGiftPair(tc.a)
+		if err == nil {
+			t.Error("want error for invalid input, got nil")
 		}
 	}
 }
