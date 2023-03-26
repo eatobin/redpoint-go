@@ -33,8 +33,8 @@ func TestGiftPairAssertEqual(t *testing.T) {
 
 func TestGiftPairJsonStringToGiftPair(t *testing.T) {
 	t.Parallel()
-	want := giftPair1
 	got, err := GiftPairJsonStringToGiftPair(jsonString)
+	want := giftPair1
 	if err != nil {
 		t.Fatalf("want no error for valid input, got: %v", err)
 	}
@@ -61,60 +61,6 @@ func TestGiftPairJsonStringToGiftPairInvalid(t *testing.T) {
 		}
 	}
 }
-
-//func TestGiftPairJsonStringToGiftPair(t *testing.T) {
-//	t.Parallel()
-//	got, _ := GiftPairJsonStringToGiftPair(jsonString)
-//	want := giftPair1
-//	if !GiftPairAssertEqual(got, want) {
-//		t.Fatalf("Got: %v Want: %v", got, want)
-//	}
-//}
-
-//func TestGiftPairJsonStringToGiftPairFromBADJSON(t *testing.T) {
-//	t.Parallel()
-//	got, err := GiftPairJsonStringToGiftPair(jsonString)
-//	want := giftPair1
-//	if err != nil {
-//		t.Fatalf("want no error for valid input, got: %v", err)
-//	}
-//	if want != got {
-//		t.Errorf("%v, %v", got, want)
-//	}
-//}
-
-//func Test_jsonStringToBorrowersPass(t *testing.T) {
-//	js := jsonStringBorrowers
-//	wantBrs := brs1
-//	wantError := error(nil)
-//
-//	got, err := JsonStringToBorrowers(js)
-//	if !reflect.DeepEqual(got, wantBrs) || err != wantError {
-//		t.Errorf("JsonStringToBorrowers\n(%s)\n==\n%v and %v\nwant\n%v and %v",
-//			js, got, err, wantBrs, wantError)
-//	}
-//}
-
-//func Test_jsonStringToBorrowersFail(t *testing.T) {
-//	cases := []struct {
-//		js        string
-//		wantBrs   Borrowers
-//		wantError error
-//	}{
-//		{jsonStringBorrowersBadParse, ZeroBorrowers, errors.New("invalid character '\"' after object key")},
-//		{jsonStringBorrowersBadNameField, ZeroBorrowers, errors.New("missing Borrower field value - borrowers list is empty")},
-//		{jsonStringBorrowersBadMaxBooksField, ZeroBorrowers, errors.New("missing Borrower field value - borrowers list is empty")},
-//	}
-//	for _, c := range cases {
-//		got, err := JsonStringToBorrowers(c.js)
-//		if err != nil {
-//			if err.Error() != c.wantError.Error() {
-//				t.Errorf("JsonStringToBorrowers\n(%s)\n==\n%v and %v\nwant\n%v and %v",
-//					c.js, got, err, c.wantBrs, c.wantError)
-//			}
-//		}
-//	}
-//}
 
 //func TestGiftPairUpdateGivee(t *testing.T) {
 //	t.Parallel()
