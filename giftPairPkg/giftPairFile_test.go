@@ -62,15 +62,16 @@ func TestGiftPairJsonStringToGiftPairInvalid(t *testing.T) {
 	}
 }
 
-//func TestGiftPairUpdateGivee(t *testing.T) {
-//	t.Parallel()
-//	got := giftPair1.GiftPairUpdateGivee("NewBee")
-//	want := GiftPairStruct{Givee: "NewBee", Giver: "JohLen"}
-//	if !GiftPairAssertEqual(got, want) {
-//		t.Fatalf("Got: %v Want: %v", got, want)
-//	}
-//}
-//
+func TestGiftPairUpdateGivee(t *testing.T) {
+	t.Parallel()
+	got := GiftPairUpdateGivee("NewBee", giftPair1)
+	want := GiftPairStruct{Givee: "NewBee", Giver: "JohLen"}
+	if !GiftPairAssertEqual(got, want) {
+		t.Errorf("GiftPairUpdateGivee(%s): want %v, got %v",
+			"NewBee", want, got)
+	}
+}
+
 //func TestGiftPairUpdateGiver(t *testing.T) {
 //	t.Parallel()
 //	got := giftPair1.GiftPairUpdateGiver("NewBee")

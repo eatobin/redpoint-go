@@ -41,12 +41,12 @@ func GiftPairJsonStringToGiftPair(jsonString JsonStringTA) (GiftPairStruct, erro
 	return giftPair, err
 }
 
-//// GiftPairUpdateGivee updates a Givee in a GiftPairStruct
-//func (giftPair GiftPairStruct) GiftPairUpdateGivee(givee GiveeTA) GiftPairStruct {
-//	giftPair.Givee = givee
-//	return giftPair
-//}
-//
+// GiftPairUpdateGivee updates a Givee in a GiftPairStruct
+func GiftPairUpdateGivee(givee GiveeTA, giftPair GiftPairStruct) GiftPairStruct {
+	giftPair.Givee = givee
+	return giftPair
+}
+
 //// GiftPairUpdateGiver updates a Giver in a GiftPairStruct
 //func (giftPair GiftPairStruct) GiftPairUpdateGiver(giver GiverTA) GiftPairStruct {
 //	giftPair.Giver = giver
