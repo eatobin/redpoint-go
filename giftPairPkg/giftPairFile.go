@@ -47,12 +47,12 @@ func GiftPairUpdateGivee(givee GiveeTA, giftPair GiftPairStruct) GiftPairStruct 
 	return giftPair
 }
 
-//// GiftPairUpdateGiver updates a Giver in a GiftPairStruct
-//func (giftPair GiftPairStruct) GiftPairUpdateGiver(giver GiverTA) GiftPairStruct {
-//	giftPair.Giver = giver
-//	return giftPair
-//}
-//
+// GiftPairUpdateGiver updates a Giver in a GiftPairStruct
+func GiftPairUpdateGiver(giver GiverTA, giftPair GiftPairStruct) GiftPairStruct {
+	giftPair.Giver = giver
+	return giftPair
+}
+
 //// String makes a GiftPairStruct into a string
 //func (giftPair GiftPairStruct) String() string {
 //	return fmt.Sprintf("{Givee: %s, Giver: %s}", giftPair.Givee, giftPair.Giver)

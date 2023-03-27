@@ -67,16 +67,17 @@ func TestGiftPairUpdateGivee(t *testing.T) {
 	got := GiftPairUpdateGivee("NewBee", giftPair1)
 	want := GiftPairStruct{Givee: "NewBee", Giver: "JohLen"}
 	if !GiftPairAssertEqual(got, want) {
-		t.Errorf("GiftPairUpdateGivee(%s): want %v, got %v",
-			"NewBee", want, got)
+		t.Errorf("GiftPairUpdateGivee(%s, %v): want %v, got %v",
+			"NewBee", giftPair1, want, got)
 	}
 }
 
-//func TestGiftPairUpdateGiver(t *testing.T) {
-//	t.Parallel()
-//	got := giftPair1.GiftPairUpdateGiver("NewBee")
-//	want := GiftPairStruct{Givee: "GeoHar", Giver: "NewBee"}
-//	if !GiftPairAssertEqual(got, want) {
-//		t.Fatalf("Got: %v Want: %v", got, want)
-//	}
-//}
+func TestGiftPairUpdateGiver(t *testing.T) {
+	t.Parallel()
+	got := GiftPairUpdateGiver("NewBee", giftPair1)
+	want := GiftPairStruct{Givee: "GeoHar", Giver: "NewBee"}
+	if !GiftPairAssertEqual(got, want) {
+		t.Errorf("GiftPairUpdateGiver(%s, %v): want %v, got %v",
+			"NewBee", giftPair1, want, got)
+	}
+}
