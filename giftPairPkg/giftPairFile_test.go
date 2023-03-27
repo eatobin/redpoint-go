@@ -7,7 +7,6 @@ import (
 var giftPair1 = GiftPairStruct{Givee: "GeoHar", Giver: "JohLen"}
 var giftPair2 = GiftPairStruct{Givee: "GeoHar", Giver: "JohLen"}
 var giftPair3 = GiftPairStruct{Givee: "NotEven", Giver: "Close"}
-
 var jsonString = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
 var badJsonString = "{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}"
 var badJsonString2 = "{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}"
@@ -79,5 +78,15 @@ func TestGiftPairUpdateGiver(t *testing.T) {
 	if !GiftPairAssertEqual(got, want) {
 		t.Errorf("GiftPairUpdateGiver(%s, %v): want %v, got %v",
 			"NewBee", giftPair1, want, got)
+	}
+}
+
+func TestGiftPairString(t *testing.T) {
+	t.Parallel()
+	got := GiftPairString(giftPair1)
+	want := "{Givee: GeoHar, Giver: JohLen}"
+	if want != got {
+		t.Errorf("GiftPairString(%v): want %s, got %s",
+			giftPair1, want, got)
 	}
 }
