@@ -8,6 +8,25 @@ var giftHistory3 = GiftHistoryTA{{Givee: "NotEven", Giver: "Close"}}
 var giftHistory4 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}
 var jsonString = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
 
+func TestGiftHistoryAssertEqual(t *testing.T) {
+	t.Parallel()
+	type testCase struct {
+		a, b GiftHistoryTA
+		want bool
+	}
+	testCases := []testCase{
+		{a: giftHistory1, b: giftHistory2, want: true},
+		//{a: giftPair1, b: giftPair3, want: false},
+	}
+	for _, tc := range testCases {
+		got := GiftHistoryAssertEqual(tc.a, tc.b)
+		if tc.want != got {
+			t.Errorf("GiftHistoryAssertEqual(%v, %v): want %t, got %t",
+				tc.a, tc.b, tc.want, got)
+		}
+	}
+}
+
 func TestGiftHistoryAssertEqualTrue(t *testing.T) {
 	t.Parallel()
 	got := GiftHistoryAssertEqual(giftHistory1, giftHistory2)
