@@ -12,7 +12,7 @@ func TestGiftHistoryAssertEqualTrue(t *testing.T) {
 	t.Parallel()
 	got := GiftHistoryAssertEqual(giftHistory1, giftHistory2)
 	if got != true {
-		t.Fatalf("Got: %v Want: %v", got, true)
+		t.Errorf("Got: %v Want: %v", got, true)
 	}
 }
 
@@ -20,7 +20,7 @@ func TestGiftPairAssertEqualFalse(t *testing.T) {
 	t.Parallel()
 	got := GiftHistoryAssertEqual(giftHistory1, giftHistory3)
 	if got != false {
-		t.Fatalf("Got: %v Want: %v", got, false)
+		t.Errorf("Got: %v Want: %v", got, false)
 	}
 }
 
@@ -28,7 +28,7 @@ func TestGiftHistoryAssertEqualFalseExtended(t *testing.T) {
 	t.Parallel()
 	got := GiftHistoryAssertEqual(giftHistory1, giftHistory4)
 	if got != false {
-		t.Fatalf("Got: %v Want: %v", got, false)
+		t.Errorf("Got: %v Want: %v", got, false)
 	}
 }
 
@@ -37,17 +37,19 @@ func TestGiftHistoryJsonStringToGiftHistory(t *testing.T) {
 	got, _ := GiftHistoryJsonStringToGiftHistory(jsonString)
 	want := giftHistory1
 	if !GiftHistoryAssertEqual(got, want) {
-		t.Fatalf("Got: %v Want: %v", got, want)
+		t.Errorf("GiftHistoryJsonStringToGiftHistory(%s): want %v, got %v", jsonString, want, got)
 	}
 }
 
-//func TestAddYear(t *testing.T) {
-//	gotAdd := AddYear("NewBee", giftHistory2)
-//	if !GiftHistoryAssertEqual(gotAdd, giftHistory4) {
-//		t.Fatalf("AddYear(%s, %v) == %v,\nwant %v", "NewBee", giftHistory, gotAdd, giftHistory4)
-//	}
-//}
-//
+func TestGiftHistoryAddYear(t *testing.T) {
+	t.Parallel()
+	got := GiftHistoryAddYear("NewBee", giftHistory1)
+	want := giftHistory4
+	if !GiftHistoryAssertEqual(got, want) {
+		t.Errorf("GiftHistoryAddYear(%s,%v): want %v, got %v", "NewBee", giftHistory1, want, got)
+	}
+}
+
 //func TestUpdateGiftHistory(t *testing.T) {
 //	giftHistoryBase := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
 //	giftHistory := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
