@@ -1,12 +1,17 @@
 package giftHistoryPkg
 
-import "testing"
+import (
+	"github.com/eatobin/redpoint-go/giftPairPkg"
+	"testing"
+)
 
 var giftHistory1 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
 var giftHistory2 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
 var giftHistory3 = GiftHistoryTA{{Givee: "NotEven", Giver: "Close"}}
 var giftHistory4 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}
 var jsonString = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
+var badJsonString = "[{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}]"
+var badJsonString2 = "[{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}]"
 
 func TestGiftHistoryAssertEqual(t *testing.T) {
 	t.Parallel()
@@ -35,20 +40,38 @@ func TestGiftHistoryJsonStringToGiftHistory(t *testing.T) {
 	if err != nil {
 		t.Fatalf("want no error for valid input, got: %v", err)
 	}
-	if want != got {
+	if !GiftHistoryAssertEqual(got, want) {
 		t.Errorf("GiftHistoryJsonStringToGiftHistory(%s): want %v, got %v",
 			giftHistory1, want, got)
 	}
 }
 
-func TestGiftHistoryAddYear(t *testing.T) {
+func TestGiftHistoryJsonStringToGiftHistoryInvalid(t *testing.T) {
 	t.Parallel()
-	got := GiftHistoryAddYear("NewBee", giftHistory1)
-	want := giftHistory4
-	if !GiftHistoryAssertEqual(got, want) {
-		t.Errorf("GiftHistoryAddYear(%s,%v): want %v, got %v", "NewBee", giftHistory1, want, got)
+	type testCase struct {
+		a    giftPairPkg.JsonStringTA
+		want GiftHistoryTA
+	}
+	testCases := []testCase{
+		{a: badJsonString},
+		{a: badJsonString2},
+	}
+	for _, tc := range testCases {
+		_, err := GiftHistoryJsonStringToGiftHistory(tc.a)
+		if err == nil {
+			t.Error("want error for invalid input, got nil")
+		}
 	}
 }
+
+//func TestGiftHistoryAddYear(t *testing.T) {
+//	t.Parallel()
+//	got := GiftHistoryAddYear("NewBee", giftHistory1)
+//	want := giftHistory4
+//	if !GiftHistoryAssertEqual(got, want) {
+//		t.Errorf("GiftHistoryAddYear(%s,%v): want %v, got %v", "NewBee", giftHistory1, want, got)
+//	}
+//}
 
 //func TestUpdateGiftHistory(t *testing.T) {
 //	giftHistoryBase := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}

@@ -17,17 +17,6 @@ type GiftPairStruct struct {
 	Giver GiverTA `json:"giver"`
 }
 
-// GiftPairAssertEqual compares two GiftPairs
-func GiftPairAssertEqual(a, b GiftPairStruct) bool {
-	if &a == &b {
-		return true
-	}
-	if a.Givee != b.Givee || a.Giver != b.Giver {
-		return false
-	}
-	return true
-}
-
 // GiftPairJsonStringToGiftPair turns a JSON string into a GiftPairStruct
 func GiftPairJsonStringToGiftPair(jsonString JsonStringTA) (GiftPairStruct, error) {
 	var giftPair GiftPairStruct
@@ -39,7 +28,7 @@ func GiftPairJsonStringToGiftPair(jsonString JsonStringTA) (GiftPairStruct, erro
 		err = errors.New("missing one or both field values")
 		return GiftPairStruct{}, err
 	}
-	return giftPair, err
+	return giftPair, nil
 }
 
 // GiftPairUpdateGivee updates a Givee in a GiftPairStruct

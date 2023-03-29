@@ -2,6 +2,7 @@ package giftHistoryPkg
 
 import (
 	"encoding/json"
+	"errors"
 	"github.com/eatobin/redpoint-go/giftPairPkg"
 )
 
@@ -14,7 +15,7 @@ func GiftHistoryAssertEqual(a, b GiftHistoryTA) bool {
 		return false
 	}
 	for i, v := range a {
-		if !giftPairPkg.GiftPairAssertEqual(v, b[i]) {
+		if v != b[i] {
 			return false
 		}
 	}
@@ -25,7 +26,16 @@ func GiftHistoryAssertEqual(a, b GiftHistoryTA) bool {
 func GiftHistoryJsonStringToGiftHistory(jsonString giftPairPkg.JsonStringTA) (GiftHistoryTA, error) {
 	var giftHistory GiftHistoryTA
 	err := json.Unmarshal([]byte(jsonString), &giftHistory)
-	return giftHistory, err
+	if err != nil {
+		return GiftHistoryTA{}, err
+	}
+	for _, v := range giftHistory {
+		if v.Givee == "" || v.Giver == "" {
+			err = errors.New("missing one or both field values somewhere")
+			return GiftHistoryTA{}, err
+		}
+	}
+	return giftHistory, nil
 }
 
 // GiftHistoryAddYear adds a playerKey to each giftHistory

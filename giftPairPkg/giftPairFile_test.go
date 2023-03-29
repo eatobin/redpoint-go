@@ -5,30 +5,9 @@ import (
 )
 
 var giftPair1 = GiftPairStruct{Givee: "GeoHar", Giver: "JohLen"}
-var giftPair2 = GiftPairStruct{Givee: "GeoHar", Giver: "JohLen"}
-var giftPair3 = GiftPairStruct{Givee: "NotEven", Giver: "Close"}
 var jsonString = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
 var badJsonString = "{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}"
 var badJsonString2 = "{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}"
-
-func TestGiftPairAssertEqual(t *testing.T) {
-	t.Parallel()
-	type testCase struct {
-		a, b GiftPairStruct
-		want bool
-	}
-	testCases := []testCase{
-		{a: giftPair1, b: giftPair2, want: true},
-		{a: giftPair1, b: giftPair3, want: false},
-	}
-	for _, tc := range testCases {
-		got := GiftPairAssertEqual(tc.a, tc.b)
-		if tc.want != got {
-			t.Errorf("GiftPairAssertEqual(%v, %v): want %t, got %t",
-				tc.a, tc.b, tc.want, got)
-		}
-	}
-}
 
 func TestGiftPairJsonStringToGiftPair(t *testing.T) {
 	t.Parallel()
@@ -65,7 +44,7 @@ func TestGiftPairUpdateGivee(t *testing.T) {
 	t.Parallel()
 	got := GiftPairUpdateGivee("NewBee", giftPair1)
 	want := GiftPairStruct{Givee: "NewBee", Giver: "JohLen"}
-	if !GiftPairAssertEqual(got, want) {
+	if want != got {
 		t.Errorf("GiftPairUpdateGivee(%s, %v): want %v, got %v",
 			"NewBee", giftPair1, want, got)
 	}
@@ -75,7 +54,7 @@ func TestGiftPairUpdateGiver(t *testing.T) {
 	t.Parallel()
 	got := GiftPairUpdateGiver("NewBee", giftPair1)
 	want := GiftPairStruct{Givee: "GeoHar", Giver: "NewBee"}
-	if !GiftPairAssertEqual(got, want) {
+	if want != got {
 		t.Errorf("GiftPairUpdateGiver(%s, %v): want %v, got %v",
 			"NewBee", giftPair1, want, got)
 	}
