@@ -16,7 +16,8 @@ func TestGiftHistoryAssertEqual(t *testing.T) {
 	}
 	testCases := []testCase{
 		{a: giftHistory1, b: giftHistory2, want: true},
-		//{a: giftPair1, b: giftPair3, want: false},
+		{a: giftHistory1, b: giftHistory3, want: false},
+		{a: giftHistory1, b: giftHistory4, want: false},
 	}
 	for _, tc := range testCases {
 		got := GiftHistoryAssertEqual(tc.a, tc.b)
@@ -27,36 +28,16 @@ func TestGiftHistoryAssertEqual(t *testing.T) {
 	}
 }
 
-func TestGiftHistoryAssertEqualTrue(t *testing.T) {
-	t.Parallel()
-	got := GiftHistoryAssertEqual(giftHistory1, giftHistory2)
-	if got != true {
-		t.Errorf("Got: %v Want: %v", got, true)
-	}
-}
-
-func TestGiftPairAssertEqualFalse(t *testing.T) {
-	t.Parallel()
-	got := GiftHistoryAssertEqual(giftHistory1, giftHistory3)
-	if got != false {
-		t.Errorf("Got: %v Want: %v", got, false)
-	}
-}
-
-func TestGiftHistoryAssertEqualFalseExtended(t *testing.T) {
-	t.Parallel()
-	got := GiftHistoryAssertEqual(giftHistory1, giftHistory4)
-	if got != false {
-		t.Errorf("Got: %v Want: %v", got, false)
-	}
-}
-
 func TestGiftHistoryJsonStringToGiftHistory(t *testing.T) {
 	t.Parallel()
-	got, _ := GiftHistoryJsonStringToGiftHistory(jsonString)
+	got, err := GiftHistoryJsonStringToGiftHistory(jsonString)
 	want := giftHistory1
-	if !GiftHistoryAssertEqual(got, want) {
-		t.Errorf("GiftHistoryJsonStringToGiftHistory(%s): want %v, got %v", jsonString, want, got)
+	if err != nil {
+		t.Fatalf("want no error for valid input, got: %v", err)
+	}
+	if want != got {
+		t.Errorf("GiftHistoryJsonStringToGiftHistory(%s): want %v, got %v",
+			giftHistory1, want, got)
 	}
 }
 
