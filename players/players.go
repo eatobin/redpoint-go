@@ -3,14 +3,13 @@ package players
 import (
 	"encoding/json"
 	"github.com/eatobin/redpoint-go/giftHistoryPkg"
-	"github.com/eatobin/redpoint-go/player"
 )
 
 type Givee = giftPair.GiveeTA
 type Giver = giftPair.GiverTA
 type GiftPair = giftPair.GiftPair
 type GiftHistory = giftHistoryPkg.GiftHistoryTA
-type Player = player.Player
+type Player = playerPkg.Player
 type Players = map[string]Player
 
 func ComparePlayers(a, b Players) bool {
@@ -18,7 +17,7 @@ func ComparePlayers(a, b Players) bool {
 		return false
 	}
 	for k, v := range a {
-		if !player.ComparePlayer(v, b[k]) {
+		if !playerPkg.ComparePlayer(v, b[k]) {
 			return false
 		}
 	}
