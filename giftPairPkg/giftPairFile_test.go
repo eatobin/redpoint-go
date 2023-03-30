@@ -4,13 +4,10 @@ import (
 	"testing"
 )
 
-var giftPair1 = GiftPairStruct{Givee: "GeoHar", Giver: "JohLen"}
-var jsonString = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
-var badJsonString = "{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}"
-var badJsonString2 = "{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}"
-
 func TestGiftPairJsonStringToGiftPair(t *testing.T) {
 	t.Parallel()
+	var jsonString = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
+	var giftPair1 = GiftPairStruct{Givee: "GeoHar", Giver: "JohLen"}
 	got, err := GiftPairJsonStringToGiftPair(jsonString)
 	want := giftPair1
 	if err != nil {
@@ -24,6 +21,8 @@ func TestGiftPairJsonStringToGiftPair(t *testing.T) {
 
 func TestGiftPairJsonStringToGiftPairInvalid(t *testing.T) {
 	t.Parallel()
+	var badJsonString = "{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}"
+	var badJsonString2 = "{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}"
 	type testCase struct {
 		a    JsonStringTA
 		want GiftPairStruct
@@ -42,6 +41,7 @@ func TestGiftPairJsonStringToGiftPairInvalid(t *testing.T) {
 
 func TestGiftPairUpdateGivee(t *testing.T) {
 	t.Parallel()
+	var giftPair1 = GiftPairStruct{Givee: "GeoHar", Giver: "JohLen"}
 	got := GiftPairUpdateGivee("NewBee", giftPair1)
 	want := GiftPairStruct{Givee: "NewBee", Giver: "JohLen"}
 	if want != got {
@@ -52,6 +52,7 @@ func TestGiftPairUpdateGivee(t *testing.T) {
 
 func TestGiftPairUpdateGiver(t *testing.T) {
 	t.Parallel()
+	var giftPair1 = GiftPairStruct{Givee: "GeoHar", Giver: "JohLen"}
 	got := GiftPairUpdateGiver("NewBee", giftPair1)
 	want := GiftPairStruct{Givee: "GeoHar", Giver: "NewBee"}
 	if want != got {
@@ -62,6 +63,7 @@ func TestGiftPairUpdateGiver(t *testing.T) {
 
 func TestGiftPairString(t *testing.T) {
 	t.Parallel()
+	var giftPair1 = GiftPairStruct{Givee: "GeoHar", Giver: "JohLen"}
 	got := GiftPairString(giftPair1)
 	want := "{Givee: GeoHar, Giver: JohLen}"
 	if want != got {
