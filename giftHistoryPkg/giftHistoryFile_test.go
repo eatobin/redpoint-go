@@ -64,14 +64,14 @@ func TestGiftHistoryJsonStringToGiftHistoryInvalid(t *testing.T) {
 	}
 }
 
-//func TestGiftHistoryAddYear(t *testing.T) {
-//	t.Parallel()
-//	got := GiftHistoryAddYear("NewBee", giftHistory1)
-//	want := giftHistory4
-//	if !GiftHistoryAssertEqual(got, want) {
-//		t.Errorf("GiftHistoryAddYear(%s,%v): want %v, got %v", "NewBee", giftHistory1, want, got)
-//	}
-//}
+func TestGiftHistoryAddYear(t *testing.T) {
+	t.Parallel()
+	got := GiftHistoryAddYear("NewBee", giftHistory1)
+	want := giftHistory4
+	if !GiftHistoryAssertEqual(got, want) {
+		t.Errorf("GiftHistoryAddYear(%s,%v): want %v, got %v", "NewBee", giftHistory1, want, got)
+	}
+}
 
 //func TestUpdateGiftHistory(t *testing.T) {
 //	giftHistoryBase := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
