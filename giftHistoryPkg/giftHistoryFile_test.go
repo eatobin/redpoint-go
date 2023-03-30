@@ -5,16 +5,12 @@ import (
 	"testing"
 )
 
-var giftHistory1 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
-var giftHistory2 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
-var giftHistory3 = GiftHistoryTA{{Givee: "NotEven", Giver: "Close"}}
-var giftHistory4 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}
-var jsonString = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
-var badJsonString = "[{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}]"
-var badJsonString2 = "[{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}]"
-
 func TestGiftHistoryAssertEqual(t *testing.T) {
 	t.Parallel()
+	var giftHistory1 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
+	var giftHistory2 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
+	var giftHistory3 = GiftHistoryTA{{Givee: "NotEven", Giver: "Close"}}
+	var giftHistory4 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}
 	type testCase struct {
 		a, b GiftHistoryTA
 		want bool
@@ -35,6 +31,8 @@ func TestGiftHistoryAssertEqual(t *testing.T) {
 
 func TestGiftHistoryJsonStringToGiftHistory(t *testing.T) {
 	t.Parallel()
+	var jsonString = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
+	var giftHistory1 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
 	got, err := GiftHistoryJsonStringToGiftHistory(jsonString)
 	want := giftHistory1
 	if err != nil {
@@ -48,6 +46,8 @@ func TestGiftHistoryJsonStringToGiftHistory(t *testing.T) {
 
 func TestGiftHistoryJsonStringToGiftHistoryInvalid(t *testing.T) {
 	t.Parallel()
+	var badJsonString = "[{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}]"
+	var badJsonString2 = "[{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}]"
 	type testCase struct {
 		a    giftPairPkg.JsonStringTA
 		want GiftHistoryTA
@@ -66,35 +66,23 @@ func TestGiftHistoryJsonStringToGiftHistoryInvalid(t *testing.T) {
 
 func TestGiftHistoryAddYear(t *testing.T) {
 	t.Parallel()
+	var giftHistory1 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
+	var giftHistory4 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}
 	got := GiftHistoryAddYear("NewBee", giftHistory1)
 	want := giftHistory4
 	if !GiftHistoryAssertEqual(got, want) {
-		t.Errorf("GiftHistoryAddYear(%s,%v): want %v, got %v", "NewBee", giftHistory1, want, got)
+		t.Errorf("GiftHistoryAddYear(%s, %v): want %v, got %v", "NewBee", giftHistory1, want, got)
 	}
 }
 
-//func TestUpdateGiftHistory(t *testing.T) {
-//	giftHistoryBase := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
-//	giftHistory := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
-//	giftHistoryMeYou := GiftHistory{{Givee: "me", Giver: "you"}}
-//
-//	if !GiftHistoryAssertEqual(UpdateGiftHistory(0, giftPairPkg.GiftPair{Givee: "me", Giver: "you"}, giftHistory), giftHistoryMeYou) {
-//		t.Fatalf("UpdateGiftHistory(%d, %v, %v) == %v,\nwant %v", 0, giftPairPkg.GiftPair{Givee: "me", Giver: "you"}, giftHistoryBase, giftHistory, giftHistoryMeYou)
-//	}
-//}
-//
-
-//	if !GiftHistoryAssertEqual(giftHistory, gotGH) {
-//		t.Fatalf("JsonStringToGiftHistory(%s) == %v,\nwant %v", jsonStringGH, gotGH, giftHistory)
-//	}
-//}
-//
-//func TestGiftHistoryToJsonString(t *testing.T) {
-//	jsonStringGH := "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
-//	giftHistory := GiftHistory{{Givee: "GeoHar", Giver: "JohLen"}}
-//	gotGHstring, _ := GiftHistoryJsonStringToGiftHistory(giftHistory)
-//
-//	if jsonStringGH != gotGHstring {
-//		t.Fatalf("GiftHistoryJsonStringToGiftHistory(%v) == %s,\nwant %s", giftHistory, gotGHstring, jsonStringGH)
-//	}
-//}
+func TestGiftHistoryUpdateGiftHistory(t *testing.T) {
+	t.Parallel()
+	var giftHistory1 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
+	var giftHistory5 = GiftHistoryTA{{Givee: "me", Giver: "you"}}
+	giftPair1 := giftPairPkg.GiftPairStruct{Givee: "me", Giver: "you"}
+	got := GiftHistoryUpdateGiftHistory(0, giftPair1, giftHistory1)
+	want := giftHistory5
+	if !GiftHistoryAssertEqual(got, want) {
+		t.Errorf("GiftHistoryUpdateGiftHistory(%d, %v, %v): want %v, got %v", 0, giftPair1, giftHistory1, want, got)
+	}
+}
