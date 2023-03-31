@@ -16,7 +16,7 @@ func TestComparePlayer(t *testing.T) {
 	var playerA = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
 	var playerB = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
 	if !ComparePlayer(playerA, playerB) {
-		t.Fatalf("ComparePlayer(%v,\n%v) == %t, want %t", playerA, playerB, false, true)
+		t.Errorf("ComparePlayer(%v,\n%v) == %t, want %t", playerA, playerB, false, true)
 	}
 	//if ComparePlayer(playerB, playerC) {
 	//	t.Fatalf("ComparePlayer(%v,\n%v) == %t, want %t", playerB, playerC, true, false)
