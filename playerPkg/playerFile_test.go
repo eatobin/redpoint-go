@@ -7,9 +7,6 @@ import (
 
 //var jsonStringPlr = "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
 
-var playerD = Player{PlayerName: "Nope", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
-var playerE = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}}
-
 //func TestComparePlayer(t *testing.T) {
 //	t.Parallel()
 //	var playerA = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
@@ -33,6 +30,9 @@ func TestPlayerAssertEqual(t *testing.T) {
 	playerA := Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
 	playerB := Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
 	playerC := Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "NotEven", Giver: "Close"}}}
+	playerD := Player{PlayerName: "Nope", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
+	playerE := Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}}
+
 	type testCase struct {
 		a, b Player
 		want bool
@@ -40,6 +40,8 @@ func TestPlayerAssertEqual(t *testing.T) {
 	testCases := []testCase{
 		{a: playerA, b: playerB, want: true},
 		{a: playerA, b: playerC, want: false},
+		{a: playerA, b: playerD, want: false},
+		{a: playerA, b: playerE, want: false},
 	}
 	for _, tc := range testCases {
 		got := PlayerAssertEqual(tc.a, tc.b)
