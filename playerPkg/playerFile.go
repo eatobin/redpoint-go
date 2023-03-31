@@ -15,8 +15,8 @@ type Player struct {
 	GiftHistory giftHistoryPkg.GiftHistoryTA `json:"giftHistory"`
 }
 
-// ComparePlayer compares two Players
-func ComparePlayer(a, b Player) bool {
+// PlayerAssertEqual compares two Players
+func PlayerAssertEqual(a, b Player) bool {
 	if &a == &b {
 		return true
 	}
