@@ -1,17 +1,18 @@
 package playerPkg
 
 import (
+	"encoding/json"
+	"errors"
 	"github.com/eatobin/redpoint-go/giftHistoryPkg"
 	"github.com/eatobin/redpoint-go/giftPairPkg"
 )
 
-type GiftPair = giftPairPkg.GiftPairStruct
-type GiftHistory = giftHistoryPkg.GiftHistoryTA
+type PlayerNameTA = string
 
 // A Player has a PlayerName and a GiftHistory
 type Player struct {
-	PlayerName  string      `json:"playerName"`
-	GiftHistory GiftHistory `json:"giftHistory"`
+	PlayerName  PlayerNameTA                 `json:"playerName"`
+	GiftHistory giftHistoryPkg.GiftHistoryTA `json:"giftHistory"`
 }
 
 // ComparePlayer compares two Players
@@ -33,6 +34,26 @@ func ComparePlayer(a, b Player) bool {
 	return true
 }
 
+// PlayerJsonStringToPlayer turns a JSON string into a Player
+func PlayerJsonStringToPlayer(jsonString giftPairPkg.JsonStringTA) (Player, error) {
+	var player Player
+	err := json.Unmarshal([]byte(jsonString), &player)
+	if err != nil {
+		return Player{}, err
+	}
+	if player.PlayerName == "" {
+		err = errors.New("missing PlayerName field value")
+		return Player{}, err
+	}
+	for _, v := range player.GiftHistory {
+		if v.Givee == "" || v.Giver == "" {
+			err = errors.New("missing a GiftHistory field value")
+			return Player{}, err
+		}
+	}
+	return player, nil
+}
+
 //
 //// UpdateGiftHistory updates a GiftHistory in a Player
 //func (player Player) UpdateGiftHistory(gh GiftHistory) Player {
@@ -45,12 +66,7 @@ func ComparePlayer(a, b Player) bool {
 //	return fmt.Sprintf("{PlayerName: %s, GiftHistory: %v}", player.PlayerName, player.GiftHistory)
 //}
 //
-//// JsonStringToPlayer turns a Player JSON string into a Player
-//func JsonStringToPlayer(playerString string) (Player, error) {
-//	var player Player
-//	err := json.Unmarshal([]byte(playerString), &player)
-//	return player, err
-//}
+
 //
 //// PlayerToJsonString turns a Player into a Player JSON string
 //func (player Player) PlayerToJsonString() (string, error) {
