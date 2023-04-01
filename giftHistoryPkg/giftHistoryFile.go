@@ -45,6 +45,8 @@ func GiftHistoryAddYear(playerKey giftPairPkg.PlayerKeyTA, giftHistory GiftHisto
 
 // GiftHistoryUpdateGiftHistory replaces a giftPair at a given giftYear
 func GiftHistoryUpdateGiftHistory(giftYear GiftYearTA, giftPair giftPairPkg.GiftPairStruct, giftHistory GiftHistoryTA) GiftHistoryTA {
-	giftHistory[giftYear] = giftPair
-	return giftHistory
+	newGiftHistory := make(GiftHistoryTA, len(giftHistory))
+	copy(newGiftHistory, giftHistory)
+	newGiftHistory[giftYear] = giftPair
+	return newGiftHistory
 }

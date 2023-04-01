@@ -5,6 +5,9 @@ import (
 	"testing"
 )
 
+var giftHistory1 = GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
+var giftHistory5 = GiftHistoryTA{{Givee: "me", Giver: "you"}}
+
 func TestGiftHistoryAssertEqual(t *testing.T) {
 	t.Parallel()
 	giftHistory1 := GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
@@ -32,7 +35,7 @@ func TestGiftHistoryAssertEqual(t *testing.T) {
 func TestGiftHistoryJsonStringToGiftHistory(t *testing.T) {
 	t.Parallel()
 	jsonString := "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
-	giftHistory1 := GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
+	//giftHistory1 := GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
 	got, err := GiftHistoryJsonStringToGiftHistory(jsonString)
 	want := giftHistory1
 	if err != nil {
@@ -77,8 +80,6 @@ func TestGiftHistoryAddYear(t *testing.T) {
 
 func TestGiftHistoryUpdateGiftHistory(t *testing.T) {
 	t.Parallel()
-	giftHistory1 := GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
-	giftHistory5 := GiftHistoryTA{{Givee: "me", Giver: "you"}}
 	giftPair1 := giftPairPkg.GiftPairStruct{Givee: "me", Giver: "you"}
 	got := GiftHistoryUpdateGiftHistory(0, giftPair1, giftHistory1)
 	want := giftHistory5
