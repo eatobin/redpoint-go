@@ -5,15 +5,16 @@ import (
 	"testing"
 )
 
+var player1 = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
+var player2 = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
+var player3 = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "Nope", Giver: "JohLen"}}}
+var player4 = Player{PlayerName: "Nope", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
+var player5 = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}}
+
 //var jsonStringPlr = "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
 
 func TestPlayerAssertEqual(t *testing.T) {
 	t.Parallel()
-	player1 := Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
-	player2 := Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
-	player3 := Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "Nope", Giver: "JohLen"}}}
-	player4 := Player{PlayerName: "Nope", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
-	player5 := Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}}
 	type testCase struct {
 		a, b Player
 		want bool
