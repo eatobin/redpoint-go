@@ -1,15 +1,14 @@
 package playerPkg
 
 import (
-	"github.com/eatobin/redpoint-go/giftHistoryPkg"
 	"testing"
 )
 
-var player1 = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
-var player2 = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
-var player3 = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "Nope", Giver: "JohLen"}}}
-var player4 = Player{PlayerName: "Nope", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
-var player5 = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistoryPkg.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}}
+var player1 = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistory.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
+var player2 = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistory.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
+var player3 = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistory.GiftHistoryTA{{Givee: "Nope", Giver: "JohLen"}}}
+var player4 = Player{PlayerName: "Nope", GiftHistory: giftHistory.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}}
+var player5 = Player{PlayerName: "Paul McCartney", GiftHistory: giftHistory.GiftHistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}}
 
 //var jsonStringPlr = "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
 

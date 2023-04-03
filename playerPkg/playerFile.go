@@ -3,15 +3,14 @@ package playerPkg
 import (
 	"encoding/json"
 	"errors"
-	"github.com/eatobin/redpoint-go/giftHistoryPkg"
 )
 
 type PlayerNameTA = string
 
 // A Player has a PlayerName and a GiftHistory
 type Player struct {
-	PlayerName  PlayerNameTA                 `json:"playerName"`
-	GiftHistory giftHistoryPkg.GiftHistoryTA `json:"giftHistory"`
+	PlayerName  PlayerNameTA              `json:"playerName"`
+	GiftHistory giftHistory.GiftHistoryTA `json:"giftHistory"`
 }
 
 // PlayerAssertEqual compares two Players

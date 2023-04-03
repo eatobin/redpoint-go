@@ -2,13 +2,12 @@ package players
 
 import (
 	"encoding/json"
-	"github.com/eatobin/redpoint-go/giftHistoryPkg"
 )
 
 type Givee = giftPair.GiveeTA
 type Giver = giftPair.GiverTA
 type GiftPair = giftPair.GiftPair
-type GiftHistory = giftHistoryPkg.GiftHistoryTA
+type GiftHistory = giftHistory.GiftHistoryTA
 type Player = playerPkg.Player
 type Players = map[string]Player
 
@@ -36,7 +35,7 @@ func GetPlayerName(playerKey string, players Players) string {
 func AddYear(players Players) Players {
 	for playerKey, thisPlayer := range players {
 		gh := thisPlayer.GiftHistory
-		ngh := giftHistoryPkg.AddYear(playerKey, gh)
+		ngh := giftHistory.AddYear(playerKey, gh)
 		nplr := thisPlayer.UpdateGiftHistory(ngh)
 		players[playerKey] = nplr
 	}
@@ -52,7 +51,7 @@ func GetGiver(selfKey string, giftYear int, players Players) Giver {
 }
 
 func setGiftPair(playerKey string, giftYear int, giftPair GiftPair, players Players) Players {
-	ngh := giftHistoryPkg.UpdateGiftHistory(giftYear, giftPair, players[playerKey].GiftHistory)
+	ngh := giftHistory.UpdateGiftHistory(giftYear, giftPair, players[playerKey].GiftHistory)
 	nplr := players[playerKey].UpdateGiftHistory(ngh)
 	return UpdatePlayer(playerKey, nplr, players)
 }

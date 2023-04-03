@@ -74,7 +74,8 @@ func TestUpdateGivee(t *testing.T) {
 		{
 			name: "ValidInput",
 			want: Struct{Givee: "NewBee", Giver: "JohLen"},
-			args: args{givee: "NewBee", giftPair: giftPair1}},
+			args: args{givee: "NewBee", giftPair: giftPair1},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -99,7 +100,8 @@ func TestUpdateGiver(t *testing.T) {
 		{
 			name: "ValidInput",
 			want: Struct{Givee: "GeoHar", Giver: "NewBee"},
-			args: args{giver: "NewBee", giftPair: giftPair1}},
+			args: args{giver: "NewBee", giftPair: giftPair1},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
