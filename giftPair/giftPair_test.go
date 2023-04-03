@@ -10,37 +10,6 @@ var giftPair1 = Struct{Givee: "GeoHar", Giver: "JohLen"}
 var badJsonString = "{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}"
 var badJsonString2 = "{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}"
 
-//func TestGiftPairJsonStringToGiftPair(t *testing.T) {
-//	t.Parallel()
-//	got, err := JsonStringToGiftPair(jsonString)
-//	want := giftPair1
-//	if err != nil {
-//		t.Fatalf("want no error for valid input, got: %v", err)
-//	}
-//	if want != got {
-//		t.Errorf("JsonStringToGiftPair(%s): want %v, got %v",
-//			giftPair1, want, got)
-//	}
-//}
-//
-//func TestGiftPairJsonStringToGiftPairInvalid(t *testing.T) {
-//	t.Parallel()
-//	type testCase struct {
-//		a    JsonStringTA
-//		want Struct
-//	}
-//	testCases := []testCase{
-//		{a: badJsonString},
-//		{a: badJsonString2},
-//	}
-//	for _, tc := range testCases {
-//		_, err := JsonStringToGiftPair(tc.a)
-//		if err == nil {
-//			t.Error("want error for invalid input, got nil")
-//		}
-//	}
-//}
-//
 //func TestGiftPairUpdateGivee(t *testing.T) {
 //	t.Parallel()
 //	got := UpdateGivee("NewBee", giftPair1)
@@ -82,6 +51,8 @@ func TestJsonStringToGiftPair(t *testing.T) {
 		wantErr bool
 	}{
 		{name: "ValidInput", args: args{jsonString}, want: giftPair1, wantErr: false},
+		{name: "InvalidInputBadJSON", args: args{badJsonString}, want: Struct{}, wantErr: true},
+		{name: "InvalidInputBadFieldName", args: args{badJsonString2}, want: Struct{}, wantErr: true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
