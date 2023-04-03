@@ -17,7 +17,7 @@ var giftPair1 = giftPair.Struct{Givee: "me", Giver: "you"}
 func TestAddYear(t *testing.T) {
 	t.Parallel()
 	type args struct {
-		playerKey   giftPair.PlayerKeyTA
+		playerKey   giftPair.PlayerKey
 		giftHistory HistoryTA
 	}
 	tests := []struct {
@@ -43,7 +43,7 @@ func TestAddYear(t *testing.T) {
 func TestJsonStringToGiftHistory(t *testing.T) {
 	t.Parallel()
 	type args struct {
-		jsonString giftPair.JsonStringTA
+		jsonString giftPair.JsonString
 	}
 	tests := []struct {
 		name    string

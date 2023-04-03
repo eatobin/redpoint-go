@@ -10,7 +10,7 @@ type HistoryTA = []giftPair.Struct
 type GiftYearTA = int
 
 // JsonStringToGiftHistory turns a JSON string into a GiftHistory
-func JsonStringToGiftHistory(jsonString giftPair.JsonStringTA) (HistoryTA, error) {
+func JsonStringToGiftHistory(jsonString giftPair.JsonString) (HistoryTA, error) {
 	var giftHistory HistoryTA
 	err := json.Unmarshal([]byte(jsonString), &giftHistory)
 	if err != nil {
@@ -26,7 +26,7 @@ func JsonStringToGiftHistory(jsonString giftPair.JsonStringTA) (HistoryTA, error
 }
 
 // AddYear adds a playerKey to each giftHistory
-func AddYear(playerKey giftPair.PlayerKeyTA, giftHistory HistoryTA) HistoryTA {
+func AddYear(playerKey giftPair.PlayerKey, giftHistory HistoryTA) HistoryTA {
 	return append(giftHistory, giftPair.Struct{Givee: playerKey, Giver: playerKey})
 }
 

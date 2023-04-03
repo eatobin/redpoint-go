@@ -6,19 +6,19 @@ import (
 	"fmt"
 )
 
-type PlayerKeyTA = string
-type GiveeTA = PlayerKeyTA
-type GiverTA = PlayerKeyTA
-type JsonStringTA = string
+type PlayerKey = string
+type Givee = PlayerKey
+type Giver = PlayerKey
+type JsonString = string
 
 // A Struct has a Givee and a Giver
 type Struct struct {
-	Givee GiveeTA `json:"givee"`
-	Giver GiverTA `json:"giver"`
+	Givee Givee `json:"givee"`
+	Giver Giver `json:"giver"`
 }
 
 // JsonStringToGiftPair turns a JSON string into a GiftPairStruct
-func JsonStringToGiftPair(jsonString JsonStringTA) (Struct, error) {
+func JsonStringToGiftPair(jsonString JsonString) (Struct, error) {
 	var giftPair Struct
 	err := json.Unmarshal([]byte(jsonString), &giftPair)
 	if err != nil {
@@ -32,13 +32,13 @@ func JsonStringToGiftPair(jsonString JsonStringTA) (Struct, error) {
 }
 
 // UpdateGivee updates a Givee in a GiftPairStruct
-func UpdateGivee(givee GiveeTA, giftPair Struct) Struct {
+func UpdateGivee(givee Givee, giftPair Struct) Struct {
 	giftPair.Givee = givee
 	return giftPair
 }
 
 // UpdateGiver updates a Giver in a GiftPairStruct
-func UpdateGiver(giver GiverTA, giftPair Struct) Struct {
+func UpdateGiver(giver Giver, giftPair Struct) Struct {
 	giftPair.Giver = giver
 	return giftPair
 }

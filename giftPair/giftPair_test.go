@@ -13,7 +13,7 @@ var badJsonString2 = "{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}"
 func TestJsonStringToGiftPair(t *testing.T) {
 	t.Parallel()
 	type args struct {
-		jsonString JsonStringTA
+		jsonString JsonString
 	}
 	tests := []struct {
 		name    string
@@ -63,7 +63,7 @@ func TestString(t *testing.T) {
 func TestUpdateGivee(t *testing.T) {
 	t.Parallel()
 	type args struct {
-		givee    GiveeTA
+		givee    Givee
 		giftPair Struct
 	}
 	tests := []struct {
@@ -89,7 +89,7 @@ func TestUpdateGivee(t *testing.T) {
 func TestUpdateGiver(t *testing.T) {
 	t.Parallel()
 	type args struct {
-		giver    GiverTA
+		giver    Giver
 		giftPair Struct
 	}
 	tests := []struct {
