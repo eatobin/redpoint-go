@@ -6,9 +6,9 @@ import (
 	"testing"
 )
 
-var giftHistory1 = HistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
-var giftHistory2 = HistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}
-var giftHistory3 = HistoryTA{{Givee: "me", Giver: "you"}}
+var giftHistory1 = History{{Givee: "GeoHar", Giver: "JohLen"}}
+var giftHistory2 = History{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}
+var giftHistory3 = History{{Givee: "me", Giver: "you"}}
 var jsonString = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
 var badJsonString = "[{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}]"
 var badJsonString2 = "[{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}]"
@@ -18,12 +18,12 @@ func TestAddYear(t *testing.T) {
 	t.Parallel()
 	type args struct {
 		playerKey   giftPair.PlayerKey
-		giftHistory HistoryTA
+		giftHistory History
 	}
 	tests := []struct {
 		name string
 		args args
-		want HistoryTA
+		want History
 	}{
 		{
 			name: "ValidInput",
@@ -48,7 +48,7 @@ func TestJsonStringToGiftHistory(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		want    HistoryTA
+		want    History
 		wantErr bool
 	}{
 		{name: "ValidInput", args: args{jsonString}, want: giftHistory1, wantErr: false},
@@ -72,14 +72,14 @@ func TestJsonStringToGiftHistory(t *testing.T) {
 func TestUpdateGiftHistory(t *testing.T) {
 	t.Parallel()
 	type args struct {
-		giftYear    GiftYearTA
+		giftYear    GiftYear
 		giftPair    giftPair.Struct
-		giftHistory HistoryTA
+		giftHistory History
 	}
 	tests := []struct {
 		name string
 		args args
-		want HistoryTA
+		want History
 	}{
 		{
 			name: "ValidInput",
