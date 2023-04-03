@@ -1,39 +1,22 @@
-package playerPkg
+package player
 
 import (
 	"encoding/json"
 	"errors"
+	"github.com/eatobin/redpoint-go/giftHistory"
+	"github.com/eatobin/redpoint-go/giftPair"
 )
 
-type PlayerNameTA = string
+type Name = string
 
 // A Player has a PlayerName and a GiftHistory
 type Player struct {
-	PlayerName  PlayerNameTA              `json:"playerName"`
-	GiftHistory giftHistory.GiftHistoryTA `json:"giftHistory"`
+	PlayerName  Name                `json:"playerName"`
+	GiftHistory giftHistory.History `json:"giftHistory"`
 }
 
-// PlayerAssertEqual compares two Players
-func PlayerAssertEqual(a, b Player) bool {
-	if &a == &b {
-		return true
-	}
-	if a.PlayerName != b.PlayerName {
-		return false
-	}
-	if len(a.GiftHistory) != len(b.GiftHistory) {
-		return false
-	}
-	for i, v := range a.GiftHistory {
-		if b.GiftHistory[i] != v {
-			return false
-		}
-	}
-	return true
-}
-
-// PlayerJsonStringToPlayer turns a JSON string into a Player
-func PlayerJsonStringToPlayer(jsonString giftPair.JsonStringTA) (Player, error) {
+// JsonStringToPlayer turns a JSON string into a Player
+func JsonStringToPlayer(jsonString giftPair.JsonString) (Player, error) {
 	var player Player
 	err := json.Unmarshal([]byte(jsonString), &player)
 	if err != nil {
