@@ -10,37 +10,8 @@ var giftPair1 = Struct{Givee: "GeoHar", Giver: "JohLen"}
 var badJsonString = "{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}"
 var badJsonString2 = "{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}"
 
-//func TestGiftPairUpdateGivee(t *testing.T) {
-//	t.Parallel()
-//	got := UpdateGivee("NewBee", giftPair1)
-//	want := Struct{Givee: "NewBee", Giver: "JohLen"}
-//	if want != got {
-//		t.Errorf("UpdateGivee(%s, %v): want %v, got %v",
-//			"NewBee", giftPair1, want, got)
-//	}
-//}
-//
-//func TestGiftPairUpdateGiver(t *testing.T) {
-//	t.Parallel()
-//	got := UpdateGiver("NewBee", giftPair1)
-//	want := Struct{Givee: "GeoHar", Giver: "NewBee"}
-//	if want != got {
-//		t.Errorf("UpdateGiver(%s, %v): want %v, got %v",
-//			"NewBee", giftPair1, want, got)
-//	}
-//}
-//
-//func TestGiftPairString(t *testing.T) {
-//	t.Parallel()
-//	got := String(giftPair1)
-//	want := "{Givee: GeoHar, Giver: JohLen}"
-//	if want != got {
-//		t.Errorf("String(%v): want %s, got %s",
-//			giftPair1, want, got)
-//	}
-//}
-
 func TestJsonStringToGiftPair(t *testing.T) {
+	t.Parallel()
 	type args struct {
 		jsonString JsonStringTA
 	}
@@ -69,6 +40,7 @@ func TestJsonStringToGiftPair(t *testing.T) {
 }
 
 func TestString(t *testing.T) {
+	t.Parallel()
 	type args struct {
 		giftPair Struct
 	}
@@ -77,7 +49,7 @@ func TestString(t *testing.T) {
 		args args
 		want string
 	}{
-		// TODO: Add test cases.
+		{name: "ValidInput", args: args{giftPair1}, want: "{Givee: GeoHar, Giver: JohLen}"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -89,6 +61,7 @@ func TestString(t *testing.T) {
 }
 
 func TestUpdateGivee(t *testing.T) {
+	t.Parallel()
 	type args struct {
 		givee    GiveeTA
 		giftPair Struct
@@ -98,7 +71,10 @@ func TestUpdateGivee(t *testing.T) {
 		args args
 		want Struct
 	}{
-		// TODO: Add test cases.
+		{
+			name: "ValidInput",
+			want: Struct{Givee: "NewBee", Giver: "JohLen"},
+			args: args{givee: "NewBee", giftPair: giftPair1}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -110,6 +86,7 @@ func TestUpdateGivee(t *testing.T) {
 }
 
 func TestUpdateGiver(t *testing.T) {
+	t.Parallel()
 	type args struct {
 		giver    GiverTA
 		giftPair Struct
@@ -119,7 +96,10 @@ func TestUpdateGiver(t *testing.T) {
 		args args
 		want Struct
 	}{
-		// TODO: Add test cases.
+		{
+			name: "ValidInput",
+			want: Struct{Givee: "GeoHar", Giver: "NewBee"},
+			args: args{giver: "NewBee", giftPair: giftPair1}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
