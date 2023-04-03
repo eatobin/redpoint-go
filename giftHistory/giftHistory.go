@@ -9,19 +9,6 @@ import (
 type HistoryTA = []giftPair.Struct
 type GiftYearTA = int
 
-// HistoryAssertEqual compares two GiftHistories
-func HistoryAssertEqual(a, b HistoryTA) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i, v := range a {
-		if v != b[i] {
-			return false
-		}
-	}
-	return true
-}
-
 // JsonStringToGiftHistory turns a JSON string into a GiftHistory
 func JsonStringToGiftHistory(jsonString giftPair.JsonStringTA) (HistoryTA, error) {
 	var giftHistory HistoryTA
