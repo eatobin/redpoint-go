@@ -81,6 +81,8 @@ func TestJsonStringToGiftHistory(t *testing.T) {
 		wantErr bool
 	}{
 		{name: "ValidInput", args: args{jsonString}, want: giftHistory1, wantErr: false},
+		{name: "InvalidInputBadJSON", args: args{badJsonString}, want: []giftPair.Struct{}, wantErr: true},
+		{name: "InvalidInputBadFieldName", args: args{badJsonString2}, want: []giftPair.Struct{}, wantErr: true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
