@@ -1,7 +1,6 @@
 package giftHistoryPkg
 
 import (
-	"github.com/eatobin/redpoint-go/giftPairPkg"
 	"testing"
 )
 
@@ -13,7 +12,7 @@ var giftHistory5 = GiftHistoryTA{{Givee: "me", Giver: "you"}}
 var jsonString = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
 var badJsonString = "[{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}]"
 var badJsonString2 = "[{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}]"
-var giftPair1 = giftPairPkg.GiftPairStruct{Givee: "me", Giver: "you"}
+var giftPair1 = giftPair.GiftPairStruct{Givee: "me", Giver: "you"}
 
 func TestGiftHistoryAssertEqual(t *testing.T) {
 	t.Parallel()
@@ -51,7 +50,7 @@ func TestGiftHistoryJsonStringToGiftHistory(t *testing.T) {
 func TestGiftHistoryJsonStringToGiftHistoryInvalid(t *testing.T) {
 	t.Parallel()
 	type testCase struct {
-		a    giftPairPkg.JsonStringTA
+		a    giftPair.JsonStringTA
 		want GiftHistoryTA
 	}
 	testCases := []testCase{

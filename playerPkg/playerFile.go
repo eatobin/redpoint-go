@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/eatobin/redpoint-go/giftHistoryPkg"
-	"github.com/eatobin/redpoint-go/giftPairPkg"
 )
 
 type PlayerNameTA = string
@@ -35,7 +34,7 @@ func PlayerAssertEqual(a, b Player) bool {
 }
 
 // PlayerJsonStringToPlayer turns a JSON string into a Player
-func PlayerJsonStringToPlayer(jsonString giftPairPkg.JsonStringTA) (Player, error) {
+func PlayerJsonStringToPlayer(jsonString giftPair.JsonStringTA) (Player, error) {
 	var player Player
 	err := json.Unmarshal([]byte(jsonString), &player)
 	if err != nil {
