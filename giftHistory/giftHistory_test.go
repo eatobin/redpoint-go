@@ -7,42 +7,12 @@ import (
 )
 
 var giftHistory1 = HistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
-var giftHistory2 = HistoryTA{{Givee: "GeoHar", Giver: "JohLen"}}
-var giftHistory3 = HistoryTA{{Givee: "NotEven", Giver: "Close"}}
-var giftHistory4 = HistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}
-var giftHistory5 = HistoryTA{{Givee: "me", Giver: "you"}}
+var giftHistory2 = HistoryTA{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}
+var giftHistory3 = HistoryTA{{Givee: "me", Giver: "you"}}
 var jsonString = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
 var badJsonString = "[{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}]"
 var badJsonString2 = "[{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}]"
 var giftPair1 = giftPair.Struct{Givee: "me", Giver: "you"}
-
-//func TestGiftHistoryJsonStringToGiftHistoryInvalid(t *testing.T) {
-//	t.Parallel()
-//	type testCase struct {
-//		a    giftPair.JsonStringTA
-//		want HistoryTA
-//	}
-//	testCases := []testCase{
-//		{a: badJsonString},
-//		{a: badJsonString2},
-//	}
-//	for _, tc := range testCases {
-//		_, err := JsonStringToGiftHistory(tc.a)
-//		if err == nil {
-//			t.Error("want error for invalid input, got nil")
-//		}
-//	}
-//}
-//
-
-//func TestGiftHistoryUpdateGiftHistory(t *testing.T) {
-//	t.Parallel()
-//	got := UpdateGiftHistory(0, giftPair1, giftHistory1)
-//	want := giftHistory5
-//	if !HistoryAssertEqual(got, want) {
-//		t.Errorf("UpdateGiftHistory(%d, %v, %v): want %v, got %v", 0, giftPair1, giftHistory1, want, got)
-//	}
-//}
 
 func TestAddYear(t *testing.T) {
 	t.Parallel()
@@ -58,7 +28,7 @@ func TestAddYear(t *testing.T) {
 		{
 			name: "ValidInput",
 			args: args{playerKey: "NewBee", giftHistory: giftHistory1},
-			want: giftHistory4,
+			want: giftHistory2,
 		},
 	}
 	for _, tt := range tests {
@@ -71,6 +41,7 @@ func TestAddYear(t *testing.T) {
 }
 
 func TestJsonStringToGiftHistory(t *testing.T) {
+	t.Parallel()
 	type args struct {
 		jsonString giftPair.JsonStringTA
 	}
@@ -99,6 +70,7 @@ func TestJsonStringToGiftHistory(t *testing.T) {
 }
 
 func TestUpdateGiftHistory(t *testing.T) {
+	t.Parallel()
 	type args struct {
 		giftYear    GiftYearTA
 		giftPair    giftPair.Struct
@@ -109,7 +81,15 @@ func TestUpdateGiftHistory(t *testing.T) {
 		args args
 		want HistoryTA
 	}{
-		// TODO: Add test cases.
+		{
+			name: "ValidInput",
+			args: args{
+				giftYear:    0,
+				giftPair:    giftPair1,
+				giftHistory: giftHistory1,
+			},
+			want: giftHistory3,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
