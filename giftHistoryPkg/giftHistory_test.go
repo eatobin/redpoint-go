@@ -99,3 +99,24 @@ func TestJsonStringToGiftHistory(t *testing.T) {
 //		})
 //	}
 //}
+
+func TestHistory_AddYear(t *testing.T) {
+	type args struct {
+		playerKey string
+	}
+	tests := []struct {
+		name        string
+		giftHistory History
+		args        args
+		want        History
+	}{
+		{name: "ValidInput", giftHistory: giftHistory1, args: args{playerKey: "NewBee"}, want: giftHistory2},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.giftHistory.AddYear(tt.args.playerKey); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("AddYear() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
