@@ -74,53 +74,6 @@ func TestStructGiftPair_UpdateGivee(t *testing.T) {
 	}
 }
 
-//func TestString(t *testing.T) {
-//	t.Parallel()
-//	type args struct {
-//		giftPair StructGiftPair
-//	}
-//	tests := []struct {
-//		name string
-//		args args
-//		want string
-//	}{
-//		{name: "ValidInput", args: args{giftPair1}, want: "{Givee: GeoHar, Giver: JohLen}"},
-//	}
-//	for _, tt := range tests {
-//		t.Run(tt.name, func(t *testing.T) {
-//			if got := String(tt.args.giftPair); got != tt.want {
-//				t.Errorf("String() = %v, want %v", got, tt.want)
-//			}
-//		})
-//	}
-//}
-
-//func TestUpdateGiver(t *testing.T) {
-//	t.Parallel()
-//	type args struct {
-//		giver    string
-//		giftPair StructGiftPair
-//	}
-//	tests := []struct {
-//		name string
-//		args args
-//		want StructGiftPair
-//	}{
-//		{
-//			name: "ValidInput",
-//			want: StructGiftPair{Givee: "GeoHar", Giver: "NewBee"},
-//			args: args{giver: "NewBee", giftPair: giftPair1},
-//		},
-//	}
-//	for _, tt := range tests {
-//		t.Run(tt.name, func(t *testing.T) {
-//			if got := UpdateGiver(tt.args.giver, tt.args.giftPair); !reflect.DeepEqual(got, tt.want) {
-//				t.Errorf("UpdateGiver() = %v, want %v", got, tt.want)
-//			}
-//		})
-//	}
-//}
-
 func TestStructGiftPair_UpdateGiver(t *testing.T) {
 	t.Parallel()
 	type fields struct {
@@ -151,6 +104,36 @@ func TestStructGiftPair_UpdateGiver(t *testing.T) {
 			}
 			if got := giftPair.UpdateGiver(tt.args.giver); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("UpdateGiver() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestStructGiftPair_String(t *testing.T) {
+	t.Parallel()
+	type fields struct {
+		Givee string
+		Giver string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		want   string
+	}{
+		{
+			name:   "ValidInput",
+			fields: fields(giftPair1),
+			want:   "{Givee: GeoHar, Giver: JohLen}",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			giftPair := StructGiftPair{
+				Givee: tt.fields.Givee,
+				Giver: tt.fields.Giver,
+			}
+			if got := giftPair.String(); got != tt.want {
+				t.Errorf("String() = %v, want %v", got, tt.want)
 			}
 		})
 	}
