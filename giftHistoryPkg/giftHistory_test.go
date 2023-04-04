@@ -14,32 +14,6 @@ var badJsonString = "[{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}]"
 var badJsonString2 = "[{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}]"
 var giftPair1 = giftPairPkg.StructGiftPair{Givee: "me", Giver: "you"}
 
-//func TestAddYear(t *testing.T) {
-//	t.Parallel()
-//	type args struct {
-//		playerKey   giftPair.PlayerKey
-//		giftHistory History
-//	}
-//	tests := []struct {
-//		name string
-//		args args
-//		want History
-//	}{
-//		{
-//			name: "ValidInput",
-//			args: args{playerKey: "NewBee", giftHistory: giftHistory1},
-//			want: giftHistory2,
-//		},
-//	}
-//	for _, tt := range tests {
-//		t.Run(tt.name, func(t *testing.T) {
-//			if got := AddYear(tt.args.playerKey, tt.args.giftHistory); !reflect.DeepEqual(got, tt.want) {
-//				t.Errorf("AddYear() = %v, want %v", got, tt.want)
-//			}
-//		})
-//	}
-//}
-
 func TestJsonStringToGiftHistory(t *testing.T) {
 	t.Parallel()
 	type args struct {
@@ -101,6 +75,7 @@ func TestJsonStringToGiftHistory(t *testing.T) {
 //}
 
 func TestHistory_AddYear(t *testing.T) {
+	t.Parallel()
 	type args struct {
 		playerKey string
 	}
