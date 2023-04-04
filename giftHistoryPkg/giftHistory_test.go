@@ -43,37 +43,6 @@ func TestJsonStringToGiftHistory(t *testing.T) {
 	}
 }
 
-//func TestUpdateGiftHistory(t *testing.T) {
-//	t.Parallel()
-//	type args struct {
-//		giftYear    GiftYear
-//		giftPair    giftPair.StructGiftPair
-//		giftHistory History
-//	}
-//	tests := []struct {
-//		name string
-//		args args
-//		want History
-//	}{
-//		{
-//			name: "ValidInput",
-//			args: args{
-//				giftYear:    0,
-//				giftPair:    giftPair1,
-//				giftHistory: giftHistory1,
-//			},
-//			want: giftHistory3,
-//		},
-//	}
-//	for _, tt := range tests {
-//		t.Run(tt.name, func(t *testing.T) {
-//			if got := UpdateGiftHistory(tt.args.giftYear, tt.args.giftPair, tt.args.giftHistory); !reflect.DeepEqual(got, tt.want) {
-//				t.Errorf("UpdateGiftHistory() = %v, want %v", got, tt.want)
-//			}
-//		})
-//	}
-//}
-
 func TestHistory_AddYear(t *testing.T) {
 	t.Parallel()
 	type args struct {
