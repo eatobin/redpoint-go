@@ -95,3 +95,33 @@ func TestHistory_AddYear(t *testing.T) {
 		})
 	}
 }
+
+func TestHistory_UpdateGiftHistory(t *testing.T) {
+	t.Parallel()
+	type args struct {
+		giftYear int
+		giftPair giftPairPkg.StructGiftPair
+	}
+	tests := []struct {
+		name        string
+		giftHistory History
+		args        args
+		want        History
+	}{
+		{
+			name:        "ValidInput",
+			giftHistory: giftHistory1,
+			args: args{
+				giftYear: 0,
+				giftPair: giftPair1,
+			},
+			want: giftHistory3},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.giftHistory.UpdateGiftHistory(tt.args.giftYear, tt.args.giftPair); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("UpdateGiftHistory() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
