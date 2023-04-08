@@ -2,7 +2,9 @@ package playersPkg
 
 import (
 	"encoding/json"
+	"errors"
 	"github.com/eatobin/redpoint-go/playerPkg"
+	//"github.com/eatobin/redpoint-go/giftPairPkg"
 )
 
 // type Givee = giftPair.GiveeTA
@@ -13,10 +15,30 @@ import (
 type Players = map[string]playerPkg.StructPlayer
 
 // JsonStringToPlayers turns a JSON string into a Players
-func JsonStringToPlayers(ghString string) (Players, error) {
+func JsonStringToPlayers(jsonString string) (Players, error) {
 	var players Players
-	err := json.Unmarshal([]byte(ghString), &players)
-	return players, err
+	err := json.Unmarshal([]byte(jsonString), &players)
+	if err != nil {
+		return Players{}, err
+	}
+	for k := range players {
+		if k == "" {
+			err = errors.New("missing PlayerKey")
+			return Players{}, err
+		}
+	}
+	for _, v := range players {
+		if v.PlayerName == "" {
+			err = errors.New("missing PlayerName field value")
+			return Players{}, err
+		}
+		if len(v.GiftHistory) == 0 {
+			err = errors.New("missing GiftHistory field value")
+			return Players{}, err
+		}
+	}
+	// TODO check giftHistory contents
+	return players, nil
 }
 
 // func UpdatePlayer(playerKey string, player Player, players Players) Players {
