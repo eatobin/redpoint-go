@@ -17,7 +17,7 @@ func JsonStringToGiftHistory(jsonString string) (History, error) {
 	}
 	for _, v := range giftHistory {
 		if v.Givee == "" || v.Giver == "" {
-			err = errors.New("missing one or both field values somewhere")
+			err = errors.New("missing one or both GiftPair field values somewhere")
 			return History{}, err
 		}
 	}

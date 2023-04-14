@@ -4,14 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/eatobin/redpoint-go/playerPkg"
-	//"github.com/eatobin/redpoint-go/giftPairPkg"
 )
 
-// type Givee = giftPair.GiveeTA
-// type Giver = giftPair.GiverTA
-// type GiftPair = giftPair.GiftPair
-// type GiftHistory = giftHistory.GiftHistoryTA
-// type Player = playerPkg.Player
 type Players = map[string]playerPkg.StructPlayer
 
 // JsonStringToPlayers turns a JSON string into a Players
@@ -37,7 +31,14 @@ func JsonStringToPlayers(jsonString string) (Players, error) {
 			return Players{}, err
 		}
 	}
-	// TODO check giftHistory contents
+	for _, v := range players {
+		for _, gp := range v.GiftHistory {
+			if gp.Givee == "" || gp.Giver == "" {
+				err = errors.New("missing one or both GiftPair field values somewhere")
+				return Players{}, err
+			}
+		}
+	}
 	return players, nil
 }
 
