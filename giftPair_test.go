@@ -6,11 +6,11 @@ import (
 )
 
 var jsonStringGP = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
-var giftPair1GP = StructGiftPair{Givee: "GeoHar", Giver: "JohLen"}
+var giftPair1GP = GiftPairStruct{Givee: "GeoHar", Giver: "JohLen"}
 var badJsonStringGP = "{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}"
 var badJsonString2GP = "{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}"
 
-func TestJsonStringToGiftPair(t *testing.T) {
+func TestGiftPairJsonStringToGiftPair(t *testing.T) {
 	t.Parallel()
 	type args struct {
 		jsonString string
@@ -18,28 +18,28 @@ func TestJsonStringToGiftPair(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		want    StructGiftPair
+		want    GiftPairStruct
 		wantErr bool
 	}{
 		{name: "ValidInput", args: args{jsonStringGP}, want: giftPair1GP, wantErr: false},
-		{name: "InvalidInputBadJSON", args: args{badJsonStringGP}, want: StructGiftPair{}, wantErr: true},
-		{name: "InvalidInputBadFieldName", args: args{badJsonString2GP}, want: StructGiftPair{}, wantErr: true},
+		{name: "InvalidInputBadJSON", args: args{badJsonStringGP}, want: GiftPairStruct{}, wantErr: true},
+		{name: "InvalidInputBadFieldName", args: args{badJsonString2GP}, want: GiftPairStruct{}, wantErr: true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := JsonStringToGiftPair(tt.args.jsonString)
+			got, err := GiftPairJsonStringToGiftPair(tt.args.jsonString)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("JsonStringToGiftPair() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("GiftPairJsonStringToGiftPair() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("JsonStringToGiftPair() got = %v, want %v", got, tt.want)
+				t.Errorf("GiftPairJsonStringToGiftPair() got = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestStructGiftPair_UpdateGivee(t *testing.T) {
+func TestStructGiftPair_GiftPairUpdateGivee(t *testing.T) {
 	t.Parallel()
 	type fields struct {
 		Givee string
@@ -52,29 +52,29 @@ func TestStructGiftPair_UpdateGivee(t *testing.T) {
 		name   string
 		fields fields
 		args   args
-		want   StructGiftPair
+		want   GiftPairStruct
 	}{
 		{
 			name:   "ValidInput",
 			fields: fields(giftPair1GP),
 			args:   args{givee: "NewBee"},
-			want:   StructGiftPair{Givee: "NewBee", Giver: "JohLen"},
+			want:   GiftPairStruct{Givee: "NewBee", Giver: "JohLen"},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			giftPair := StructGiftPair{
+			giftPair := GiftPairStruct{
 				Givee: tt.fields.Givee,
 				Giver: tt.fields.Giver,
 			}
-			if got := giftPair.UpdateGivee(tt.args.givee); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("UpdateGivee() = %v, want %v", got, tt.want)
+			if got := giftPair.GiftPairUpdateGivee(tt.args.givee); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("GiftPairUpdateGivee() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestStructGiftPair_UpdateGiver(t *testing.T) {
+func TestStructGiftPair_GiftPairUpdateGiver(t *testing.T) {
 	t.Parallel()
 	type fields struct {
 		Givee string
@@ -87,29 +87,29 @@ func TestStructGiftPair_UpdateGiver(t *testing.T) {
 		name   string
 		fields fields
 		args   args
-		want   StructGiftPair
+		want   GiftPairStruct
 	}{
 		{
 			name:   "ValidInput",
 			fields: fields(giftPair1GP),
 			args:   args{giver: "NewBee"},
-			want:   StructGiftPair{Givee: "GeoHar", Giver: "NewBee"},
+			want:   GiftPairStruct{Givee: "GeoHar", Giver: "NewBee"},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			giftPair := StructGiftPair{
+			giftPair := GiftPairStruct{
 				Givee: tt.fields.Givee,
 				Giver: tt.fields.Giver,
 			}
-			if got := giftPair.UpdateGiver(tt.args.giver); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("UpdateGiver() = %v, want %v", got, tt.want)
+			if got := giftPair.GiftPairUpdateGiver(tt.args.giver); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("GiftPairUpdateGiver() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestStructGiftPair_StringGP(t *testing.T) {
+func TestStructGiftPair_GiftPairString(t *testing.T) {
 	t.Parallel()
 	type fields struct {
 		Givee string
@@ -128,12 +128,12 @@ func TestStructGiftPair_StringGP(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			giftPair := StructGiftPair{
+			giftPair := GiftPairStruct{
 				Givee: tt.fields.Givee,
 				Giver: tt.fields.Giver,
 			}
-			if got := giftPair.StringGP(); got != tt.want {
-				t.Errorf("StringGP() = %v, want %v", got, tt.want)
+			if got := giftPair.GiftPairString(); got != tt.want {
+				t.Errorf("GiftPairString() = %v, want %v", got, tt.want)
 			}
 		})
 	}

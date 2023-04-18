@@ -6,39 +6,39 @@ import (
 	"fmt"
 )
 
-// A StructGiftPair has a Givee and a Giver
-type StructGiftPair struct {
+// A GiftPairStruct has a Givee and a Giver
+type GiftPairStruct struct {
 	Givee string `json:"givee"`
 	Giver string `json:"giver"`
 }
 
-// JsonStringToGiftPair turns a JSON string into a GiftPairStruct
-func JsonStringToGiftPair(jsonString string) (StructGiftPair, error) {
-	var giftPair StructGiftPair
+// GiftPairJsonStringToGiftPair turns a JSON string into a GiftPairStruct
+func GiftPairJsonStringToGiftPair(jsonString string) (GiftPairStruct, error) {
+	var giftPair GiftPairStruct
 	err := json.Unmarshal([]byte(jsonString), &giftPair)
 	if err != nil {
-		return StructGiftPair{}, err
+		return GiftPairStruct{}, err
 	}
 	if giftPair.Givee == "" || giftPair.Giver == "" {
 		err = errors.New("missing one or both field values")
-		return StructGiftPair{}, err
+		return GiftPairStruct{}, err
 	}
 	return giftPair, nil
 }
 
-// UpdateGivee updates a Givee in a GiftPairStruct
-func (giftPair StructGiftPair) UpdateGivee(givee string) StructGiftPair {
+// GiftPairUpdateGivee updates a Givee in a GiftPairStruct
+func (giftPair GiftPairStruct) GiftPairUpdateGivee(givee string) GiftPairStruct {
 	giftPair.Givee = givee
 	return giftPair
 }
 
-// UpdateGiver updates a Giver in a GiftPairStruct
-func (giftPair StructGiftPair) UpdateGiver(giver string) StructGiftPair {
+// GiftPairUpdateGiver updates a Giver in a GiftPairStruct
+func (giftPair GiftPairStruct) GiftPairUpdateGiver(giver string) GiftPairStruct {
 	giftPair.Giver = giver
 	return giftPair
 }
 
-// StringGP makes a GiftPairStruct into a string
-func (giftPair StructGiftPair) StringGP() string {
+// GiftPairString makes a GiftPairStruct into a string
+func (giftPair GiftPairStruct) GiftPairString() string {
 	return fmt.Sprintf("{Givee: %s, Giver: %s}", giftPair.Givee, giftPair.Giver)
 }
