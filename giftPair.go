@@ -38,7 +38,7 @@ func (giftPair StructGiftPair) UpdateGiver(giver string) StructGiftPair {
 	return giftPair
 }
 
-// String makes a GiftPairStruct into a string
-func (giftPair StructGiftPair) String() string {
+// StringGP makes a GiftPairStruct into a string
+func (giftPair StructGiftPair) StringGP() string {
 	return fmt.Sprintf("{Givee: %s, Giver: %s}", giftPair.Givee, giftPair.Giver)
 }

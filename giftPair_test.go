@@ -109,7 +109,7 @@ func TestStructGiftPair_UpdateGiver(t *testing.T) {
 	}
 }
 
-func TestStructGiftPair_String(t *testing.T) {
+func TestStructGiftPair_StringGP(t *testing.T) {
 	t.Parallel()
 	type fields struct {
 		Givee string
@@ -132,8 +132,8 @@ func TestStructGiftPair_String(t *testing.T) {
 				Givee: tt.fields.Givee,
 				Giver: tt.fields.Giver,
 			}
-			if got := giftPair.String(); got != tt.want {
-				t.Errorf("String() = %v, want %v", got, tt.want)
+			if got := giftPair.StringGP(); got != tt.want {
+				t.Errorf("StringGP() = %v, want %v", got, tt.want)
 			}
 		})
 	}
