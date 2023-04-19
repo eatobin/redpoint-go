@@ -13,10 +13,6 @@ var badJsonStringPlr3 = "{\"playerName\":\"Paul McCartney\",\"giftHistoryX\":[{\
 var badJsonStringPlr4 = "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
 var playerPlr2 = PlayerStruct{PlayerName: "Paul McCartney", GiftHistory: History{{Givee: "nope", Giver: "yup"}}}
 
-//var player3 = StructGiftPair{PlayerName: "Paul McCartney", GiftHistory: giftHistory.History{{Givee: "Nope", Giver: "JohLen"}}}
-//var player4 = StructGiftPair{PlayerName: "Nope", GiftHistory: giftHistory.History{{Givee: "GeoHar", Giver: "JohLen"}}}
-//var player5 = StructGiftPair{PlayerName: "Paul McCartney", GiftHistory: giftHistory.History{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "NewBee", Giver: "NewBee"}}}
-
 func TestPlayerJsonStringToPlayer(t *testing.T) {
 	t.Parallel()
 	type args struct {
