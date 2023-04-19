@@ -66,7 +66,8 @@ func TestPlayerStruct_PlayerUpdateGiftHistory(t *testing.T) {
 			name:   "ValidInput",
 			fields: fields(playerPlr1),
 			args:   args{History{{Givee: "nope", Giver: "yup"}}},
-			want:   playerPlr2},
+			want:   playerPlr2,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -76,6 +77,35 @@ func TestPlayerStruct_PlayerUpdateGiftHistory(t *testing.T) {
 			}
 			if got := player.PlayerUpdateGiftHistory(tt.args.giftHistory); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("PlayerUpdateGiftHistory() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestPlayerStruct_PlayerString(t *testing.T) {
+	type fields struct {
+		PlayerName  string
+		GiftHistory History
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		want   string
+	}{
+		{
+			name:   "ValidInput",
+			fields: fields(playerPlr1),
+			want:   "{PlayerName: Paul McCartney, GiftHistory: [{GeoHar JohLen}]}",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			player := PlayerStruct{
+				PlayerName:  tt.fields.PlayerName,
+				GiftHistory: tt.fields.GiftHistory,
+			}
+			if got := player.PlayerString(); got != tt.want {
+				t.Errorf("PlayerString() = %v, want %v", got, tt.want)
 			}
 		})
 	}
