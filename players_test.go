@@ -18,6 +18,7 @@ var pauMcc = PlayerStruct{PlayerName: "Paul McCartney", GiftHistory: History{{Gi
 var players = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
 
 func TestPlayersJsonStringToPlayers(t *testing.T) {
+	t.Parallel()
 	type args struct {
 		jsonString string
 	}

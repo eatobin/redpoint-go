@@ -45,6 +45,7 @@ func TestPlayerJsonStringToPlayer(t *testing.T) {
 }
 
 func TestPlayerStruct_PlayerUpdateGiftHistory(t *testing.T) {
+	t.Parallel()
 	type fields struct {
 		PlayerName  string
 		GiftHistory History
@@ -79,6 +80,7 @@ func TestPlayerStruct_PlayerUpdateGiftHistory(t *testing.T) {
 }
 
 func TestPlayerStruct_PlayerString(t *testing.T) {
+	t.Parallel()
 	type fields struct {
 		PlayerName  string
 		GiftHistory History
