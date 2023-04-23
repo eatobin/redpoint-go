@@ -41,6 +41,12 @@ func PlayersJsonStringToPlayers(jsonString string) (Players, error) {
 	return players, nil
 }
 
+//fun playersUpdatePlayer(playerKey: PlayerKeyTA, player: Player, players: PlayersTA): PlayersTA {
+//val mutPlayers = players.toMutableMap()
+//mutPlayers[playerKey] = player
+//return mutPlayers.toSortedMap()
+//}
+
 // func UpdatePlayer(playerKey string, player Player, players Players) Players {
 // 	players[playerKey] = player
 // 	return players
