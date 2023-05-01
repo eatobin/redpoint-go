@@ -15,7 +15,9 @@ var rinSta = PlayerStruct{PlayerName: "Ringo Starr", GiftHistory: History{{Givee
 var johLen = PlayerStruct{PlayerName: "John Lennon", GiftHistory: History{{Givee: "PauMcc", Giver: "RinSta"}}}
 var geoHar = PlayerStruct{PlayerName: "George Harrison", GiftHistory: History{{Givee: "RinSta", Giver: "PauMcc"}}}
 var pauMcc = PlayerStruct{PlayerName: "Paul McCartney", GiftHistory: History{{Givee: "GeoHar", Giver: "JohLen"}}}
+var newBee = PlayerStruct{PlayerName: "New Bee", GiftHistory: History{{Givee: "NewBee", Giver: "NewBee"}}}
 var players = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
+var newBeePlayers = Players{"RinSta": newBee, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
 
 func TestPlayersJsonStringToPlayers(t *testing.T) {
 	t.Parallel()
@@ -44,6 +46,35 @@ func TestPlayersJsonStringToPlayers(t *testing.T) {
 			}
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("PlayersJsonStringToPlayers() got = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_playersUpdatePlayer(t *testing.T) {
+	type args struct {
+		playerKey string
+		player    PlayerStruct
+		players   Players
+	}
+	tests := []struct {
+		name string
+		args args
+		want Players
+	}{
+		{
+			name: "ValidInput",
+			args: args{
+				"RinSta",
+				PlayerStruct{PlayerName: "New Bee", GiftHistory: History{{Givee: "NewBee", Giver: "NewBee"}}},
+				players,
+			},
+			want: newBeePlayers},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := playersUpdatePlayer(tt.args.playerKey, tt.args.player, tt.args.players); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("playersUpdatePlayer() = %v, want %v", got, tt.want)
 			}
 		})
 	}

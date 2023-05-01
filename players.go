@@ -50,17 +50,6 @@ func playersUpdatePlayer(playerKey string, player PlayerStruct, players Players)
 	return playersCopy
 }
 
-//fun playersUpdatePlayer(playerKey: PlayerKeyTA, player: Player, players: PlayersTA): PlayersTA {
-//val mutPlayers = players.toMutableMap()
-//mutPlayers[playerKey] = player
-//return mutPlayers.toSortedMap()
-//}
-
-// func UpdatePlayer(playerKey string, player Player, players Players) Players {
-// 	players[playerKey] = player
-// 	return players
-// }
-
 // func GetPlayerName(playerKey string, players Players) string {
 // 	return players[playerKey].PlayerName
 // }
