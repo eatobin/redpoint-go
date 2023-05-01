@@ -41,6 +41,15 @@ func PlayersJsonStringToPlayers(jsonString string) (Players, error) {
 	return players, nil
 }
 
+func playersUpdatePlayer(playerKey string, player PlayerStruct, players Players) Players {
+	playersCopy := make(Players)
+	for k, v := range players {
+		playersCopy[k] = v
+	}
+	playersCopy[playerKey] = player
+	return playersCopy
+}
+
 //fun playersUpdatePlayer(playerKey: PlayerKeyTA, player: Player, players: PlayersTA): PlayersTA {
 //val mutPlayers = players.toMutableMap()
 //mutPlayers[playerKey] = player
