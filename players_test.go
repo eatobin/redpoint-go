@@ -51,7 +51,7 @@ func TestPlayersJsonStringToPlayers(t *testing.T) {
 	}
 }
 
-func Test_playersUpdatePlayer(t *testing.T) {
+func TestPlayersUpdatePlayer(t *testing.T) {
 	type args struct {
 		playerKey string
 		player    PlayerStruct
@@ -73,7 +73,7 @@ func Test_playersUpdatePlayer(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := playersUpdatePlayer(tt.args.playerKey, tt.args.player, tt.args.players); !reflect.DeepEqual(got, tt.want) {
+			if got := PlayersUpdatePlayer(tt.args.playerKey, tt.args.player, tt.args.players); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("playersUpdatePlayer() = %v, want %v", got, tt.want)
 			}
 		})

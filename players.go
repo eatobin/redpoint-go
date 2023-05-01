@@ -41,7 +41,7 @@ func PlayersJsonStringToPlayers(jsonString string) (Players, error) {
 	return players, nil
 }
 
-func playersUpdatePlayer(playerKey string, player PlayerStruct, players Players) Players {
+func PlayersUpdatePlayer(playerKey string, player PlayerStruct, players Players) Players {
 	playersCopy := make(Players)
 	for k, v := range players {
 		playersCopy[k] = v
