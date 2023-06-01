@@ -69,12 +69,34 @@ func TestPlayers_PlayersUpdatePlayer(t *testing.T) {
 				playerKey: "RinSta",
 				player:    PlayerStruct{PlayerName: "New Bee", GiftHistory: History{{Givee: "NewBee", Giver: "NewBee"}}},
 			},
-			want: newBeePlayers},
+			want: newBeePlayers,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := tt.players.PlayersUpdatePlayer(tt.args.playerKey, tt.args.player); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("PlayersUpdatePlayer() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestPlayers_PlayersGetPlayerName(t *testing.T) {
+	type args struct {
+		playerKey string
+	}
+	tests := []struct {
+		name    string
+		players Players
+		args    args
+		want    string
+	}{
+		{name: "ValidInput", players: players, args: args{playerKey: "PauMcc"}, want: "Paul McCartney"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.players.PlayersGetPlayerName(tt.args.playerKey); got != tt.want {
+				t.Errorf("PlayersGetPlayerName() = %v, want %v", got, tt.want)
 			}
 		})
 	}
