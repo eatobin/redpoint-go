@@ -6,7 +6,6 @@ import (
 )
 
 type Players map[string]PlayerStruct
-type PlayerName = string
 
 // PlayersJsonStringToPlayers turns a JSON string into a Players
 func PlayersJsonStringToPlayers(jsonString string) (Players, error) {
@@ -51,7 +50,7 @@ func (players Players) PlayersUpdatePlayer(playerKey string, player PlayerStruct
 	return playersCopy
 }
 
-func (players Players) PlayersGetPlayerName(playerKey string) PlayerName {
+func (players Players) PlayersGetPlayerName(playerKey string) string {
 	return players[playerKey].PlayerName
 }
 
