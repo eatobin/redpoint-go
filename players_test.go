@@ -101,3 +101,20 @@ func TestPlayers_PlayersGetPlayerName(t *testing.T) {
 		})
 	}
 }
+
+func TestPlayers_PlayersAddYear(t *testing.T) {
+	tests := []struct {
+		name    string
+		players Players
+		want    Players
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.players.PlayersAddYear(); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("PlayersAddYear() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
