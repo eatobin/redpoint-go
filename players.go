@@ -5,7 +5,7 @@ import (
 	"errors"
 )
 
-type Players = map[string]PlayerStruct
+type Players map[string]PlayerStruct
 
 // PlayersJsonStringToPlayers turns a JSON string into a Players
 func PlayersJsonStringToPlayers(jsonString string) (Players, error) {
@@ -41,7 +41,7 @@ func PlayersJsonStringToPlayers(jsonString string) (Players, error) {
 	return players, nil
 }
 
-func PlayersUpdatePlayer(playerKey string, player PlayerStruct, players Players) Players {
+func (players Players) PlayersUpdatePlayer(playerKey string, player PlayerStruct) Players {
 	playersCopy := make(Players)
 	for k, v := range players {
 		playersCopy[k] = v
