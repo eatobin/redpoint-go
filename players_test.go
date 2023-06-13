@@ -18,6 +18,11 @@ var pauMcc = PlayerStruct{PlayerName: "Paul McCartney", GiftHistory: History{{Gi
 var newBee = PlayerStruct{PlayerName: "New Bee", GiftHistory: History{{Givee: "NewBee", Giver: "NewBee"}}}
 var players = Players{"RinSta": rinSta, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
 var newBeePlayers = Players{"RinSta": newBee, "JohLen": johLen, "GeoHar": geoHar, "PauMcc": pauMcc}
+var rinStaExt = PlayerStruct{PlayerName: "Ringo Starr", GiftHistory: History{{Givee: "JohLen", Giver: "GeoHar"}, {Givee: "RinSta", Giver: "RinSta"}}}
+var johLenExt = PlayerStruct{PlayerName: "John Lennon", GiftHistory: History{{Givee: "PauMcc", Giver: "RinSta"}, {Givee: "JohLen", Giver: "JohLen"}}}
+var geoHarExt = PlayerStruct{PlayerName: "George Harrison", GiftHistory: History{{Givee: "RinSta", Giver: "PauMcc"}, {Givee: "GeoHar", Giver: "GeoHar"}}}
+var pauMccExt = PlayerStruct{PlayerName: "Paul McCartney", GiftHistory: History{{Givee: "GeoHar", Giver: "JohLen"}, {Givee: "PauMcc", Giver: "PauMcc"}}}
+var playersExt = Players{"RinSta": rinStaExt, "JohLen": johLenExt, "GeoHar": geoHarExt, "PauMcc": pauMccExt}
 
 func TestPlayersJsonStringToPlayers(t *testing.T) {
 	t.Parallel()
@@ -108,7 +113,7 @@ func TestPlayers_PlayersAddYear(t *testing.T) {
 		players Players
 		want    Players
 	}{
-		// TODO: Add test cases.
+		{name: "ValidInput", players: players, want: playersExt},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
