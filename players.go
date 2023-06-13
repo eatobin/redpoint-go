@@ -55,13 +55,17 @@ func (players Players) PlayersGetPlayerName(playerKey string) string {
 }
 
 func (players Players) PlayersAddYear() Players {
-	for playerKey, player := range players {
+	playersCopy := make(Players)
+	for k, v := range players {
+		playersCopy[k] = v
+	}
+	for playerKey, player := range playersCopy {
 		gh := player.GiftHistory
 		ngh := gh.GiftHistoryAddYear(playerKey)
 		nplr := player.PlayerUpdateGiftHistory(ngh)
-		players[playerKey] = nplr
+		playersCopy[playerKey] = nplr
 	}
-	return players
+	return playersCopy
 }
 
 // func GetGivee(selfKey string, giftYear int, players Players) Givee {
